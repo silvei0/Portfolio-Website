@@ -1,9 +1,15 @@
 body {
     background-color: #eae9e5;
+    font-family: "CustomFont", sans-serif;
 }
 
 nav a {
     color: #333;
     text-decoration: none;
     padding: 10px;
+}
+
+@font-face {
+    font-family: "CustomFont";
+    src: url(assets/font/BRHendrix-Medium-BF6556d1b4e12b2.otf) format("opentype");
 }
