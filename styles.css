@@ -7,6 +7,20 @@ nav a {
     color: #333;
     text-decoration: none;
     padding: 10px;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+nav {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    width: 100%;
+}
+
+main {
+    margin-top: 100px;
+    padding: 20px;
 }
 
 @font-face {
