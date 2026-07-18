@@ -67,15 +67,14 @@ main h2 {
 
 .say-hi {
     position: absolute;
-    right: 70px;
-    bottom: 120px;
+    right: 90px;
+    bottom: 300px;
     z-index: 1;
     padding: 8px 16px;
     color: #333;
     background-color: #eae9e5;
     border: 1px solid #777;
     border-radius: 20px;
-    font-family: inherit;
     cursor: pointer;
 }
 
