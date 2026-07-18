@@ -168,15 +168,56 @@ footer p {
     z-index: 1;
     margin: 0;
     padding: 100px 0 80px;
-    text-align: center;
 }
 
 /* About page: paper */
+.about-sheet,
 .about-paper {
-    display: block;
     width: calc(100% - 300px);
     margin: 0 auto;
+}
+
+.about-sheet {
+    position: relative;
+}
+
+.about-paper {
+    display: block;
     box-shadow: 0 8px 20px #3338;
+}
+
+.about-sheet .about-paper {
+    width: 100%;
+}
+
+.about-photo {
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    width: 260px;
+    filter: drop-shadow(3px 5px 5px #3338);
+}
+
+.about {
+    position: absolute;
+    top: 70px;
+    right: 60px;
+    left: 340px;
+    color: #2b1a12;
+    font-family: "Courier New", Courier, monospace;
+    text-align: left;
+}
+
+.about h1 {
+    margin: 0 0 20px;
+    font-size: 48px;
+}
+
+.about p {
+    margin: 0;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.6;
 }
 
 /* Home page: heading */
@@ -298,13 +339,6 @@ footer p {
         padding: 0;
     }
 
-    .about-page nav::before {
-        top: 0;
-        right: 0;
-        left: 0;
-        height: 95px;
-    }
-
     .social-links {
         position: static;
         justify-content: flex-end;
@@ -324,8 +358,29 @@ footer p {
         width: auto;
     }
 
+    .about-sheet,
     .about-paper {
         width: calc(100% - 40px);
+    }
+
+    .about-photo {
+        top: 20px;
+        right: 20px;
+        width: 180px;
+    }
+
+    .about {
+        top: 260px;
+        right: 30px;
+        left: 30px;
+    }
+
+    .about h1 {
+        font-size: 32px;
+    }
+
+    .about p {
+        font-size: 14px;
     }
 
     .say-hi,
