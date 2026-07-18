@@ -155,11 +155,13 @@ footer p {
     pointer-events: none;
 }
 
-.about-page nav a {
+.about-page nav a,
+.projects-page nav a {
     color: #f5f2e8;
 }
 
-.about-page nav a:hover {
+.about-page nav a:hover,
+.projects-page nav a:hover {
     color: #c4a484;
 }
 
@@ -170,7 +172,7 @@ footer p {
     padding: 100px 0 80px;
 }
 
-/* About page: paper */
+/* About page: paper and content */
 .about-sheet,
 .about-paper {
     width: calc(100% - 300px);
@@ -188,6 +190,11 @@ footer p {
 
 .about-sheet .about-paper {
     width: 100%;
+    clip-path: inset(-20px -20px 0);
+}
+
+.about-sheet + .about-paper {
+    clip-path: inset(0 -20px -20px);
 }
 
 .about-photo {
@@ -200,24 +207,82 @@ footer p {
 
 .about {
     position: absolute;
-    top: 70px;
-    right: 60px;
-    left: 340px;
+    top: 40px;
+    right: 300px;
+    left: 60px;
     color: #2b1a12;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Courier Prime", monospace;
     text-align: left;
 }
 
 .about h1 {
-    margin: 0 0 20px;
+    left: 30px;
     font-size: 48px;
 }
 
 .about p {
-    margin: 0;
-    font-size: 17px;
+    font-size: 20px;
     font-weight: bold;
     line-height: 1.6;
+}
+
+/* Projects page */
+.projects-page {
+    position: relative;
+    min-height: 200vh;
+    margin: 0;
+    background-color: #1f5b57;
+}
+
+.projects-page::before,
+.projects-page::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100vh;
+    background: url("assets/cuttingboard-mirror.webp") center / 400px repeat;
+    pointer-events: none;
+}
+
+.projects-page::before {
+    top: 0;
+}
+
+.projects-page::after {
+    top: 100vh;
+    transform: scaleY(-1);
+}
+
+.projects-page main {
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+    padding-top: 150px;
+}
+
+.projects-page header {
+    position: relative;
+    z-index: 20;
+}
+
+.projects-page nav {
+    z-index: 10;
+    isolation: isolate;
+}
+
+.projects-page nav::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    height: 90px;
+    background-color: #123f3d;
+    opacity: var(--projects-nav-opacity, 0);
+    pointer-events: none;
 }
 
 /* Home page: heading */
@@ -322,102 +387,4 @@ footer p {
 
 @keyframes pop {
     50% { transform: scale(1.15); }
-}
-
-/* Smaller screens */
-@media (max-width: 900px) {
-    nav {
-        position: static;
-        width: auto;
-        padding: 25px 15px;
-    }
-
-    .about-page nav {
-        position: fixed;
-        top: 25px;
-        left: 15px;
-        padding: 0;
-    }
-
-    .social-links {
-        position: static;
-        justify-content: flex-end;
-        margin: 0 20px 20px;
-    }
-
-    main {
-        margin-top: 0;
-        padding: 20px;
-    }
-
-    main h1 {
-        font-size: 50px;
-    }
-
-    main h2 {
-        width: auto;
-    }
-
-    .about-sheet,
-    .about-paper {
-        width: calc(100% - 40px);
-    }
-
-    .about-photo {
-        top: 20px;
-        right: 20px;
-        width: 180px;
-    }
-
-    .about {
-        top: 260px;
-        right: 30px;
-        left: 30px;
-    }
-
-    .about h1 {
-        font-size: 32px;
-    }
-
-    .about p {
-        font-size: 14px;
-    }
-
-    .say-hi,
-    .home-visual,
-    .post-it {
-        position: relative;
-        top: auto;
-        right: auto;
-        bottom: auto;
-        left: auto;
-    }
-
-    .say-hi {
-        display: block;
-        margin: 20px 0;
-    }
-
-    .home-visual {
-        display: block;
-        width: 100%;
-        max-width: 550px;
-    }
-
-    .thought-bubble {
-        top: -120px;
-        left: -40px;
-        width: 300px;
-    }
-
-    .post-it {
-        width: 140px;
-        margin: 20px 5px;
-    }
-
-    footer {
-        position: static;
-        width: auto;
-        margin-top: 30px;
-    }
 }
