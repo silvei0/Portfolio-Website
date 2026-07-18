@@ -1,4 +1,5 @@
 /* Fonts */
+
 @font-face {
     font-family: "CustomFont";
     src: url("assets/font/BRHendrix-Medium-BF6556d1b4e12b2.otf") format("opentype");
@@ -9,18 +10,20 @@
     src: url("assets/font/BRHendrix-Bold-BF6556d1b5459d3.otf") format("opentype");
 }
 
-/* Shared layout */
+/* Base */
+
 body {
     background-color: #eae9e5;
     font-family: "CustomFont", sans-serif;
 }
 
+/* Navigation */
+
 nav {
     position: fixed;
+    font-size: 18px;
     top: 40px;
     left: 40px;
-    width: 100%;
-    font-size: 18px;
 }
 
 nav a {
@@ -38,6 +41,32 @@ nav a[aria-current="page"] {
     font-family: "CustomFontBold", sans-serif;
 }
 
+.social-links {
+    position: fixed;
+    top: 40px;
+    right: 50px;
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    opacity: 0.7;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.social-links img {
+    display: block;
+    width: 22px;
+    height: 22px;
+}
+
+/* Index content */
+
 main {
     margin-top: 100px;
     padding: 50px;
@@ -52,25 +81,78 @@ main h2 {
     width: 500px;
     margin-top: 20px;
     font-size: 17px;
+    font-weight: normal;
     line-height: 1.5;
 }
+
+/* Footer */
 
 footer {
     position: fixed;
     bottom: 20px;
-    left: 30px;
+    left: 0;
     width: 100%;
-    color: #666;
-    font-size: 14px;
+    color: #a3938a;
+    font-size: 12px;
     text-align: center;
 }
 
-/* About page */
+footer p {
+    margin: 4px 0;
+}
+
+/* About page: background and navigation */
+
 .about-page {
+    position: relative;
     min-height: 100vh;
-    background-image: url("assets/about-background.jpg");
-    background-position: center;
-    background-size: cover;
+    margin: 0;
+    background-color: #9a6538;
+}
+
+.about-page::before,
+.about-page::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    background: url("assets/about-background.jpg") center / cover;
+    pointer-events: none;
+}
+
+.about-page::before {
+    top: 0;
+    height: calc(50% + 10px);
+}
+
+.about-page::after {
+    top: calc(50% + 10px);
+    bottom: 0;
+    transform: scaleY(-1);
+}
+
+.about-page header {
+    position: relative;
+    z-index: 20;
+}
+
+.about-page nav {
+    z-index: 10;
+    isolation: isolate;
+}
+
+.about-page nav::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    height: 90px;
+    background-color: #47301f;
+    opacity: var(--nav-opacity, 0);
+    pointer-events: none;
 }
 
 .about-page nav a {
@@ -81,7 +163,23 @@ footer {
     color: #c4a484;
 }
 
-/* Home page */
+.about-page main {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 100px 0 80px;
+    text-align: center;
+}
+
+/* About page: paper */
+.about-paper {
+    display: block;
+    width: calc(100% - 300px);
+    margin: 0 auto;
+    box-shadow: 0 8px 20px #3338;
+}
+
+/* Home page: heading */
 .blue {
     color: #215caa;
 }
@@ -105,6 +203,7 @@ footer {
     transform: translateY(-10px);
 }
 
+/* Home page: button and images */
 .say-hi {
     position: absolute;
     right: 90px;
@@ -127,11 +226,24 @@ footer {
     animation: pop 0.4s;
 }
 
-.home-image {
+.home-visual {
     position: absolute;
     right: 40px;
     bottom: 40px;
     width: 550px;
+}
+
+.home-image {
+    display: block;
+    width: 100%;
+}
+
+.thought-bubble {
+    position: absolute;
+    top: -280px;
+    left: -270px;
+    width: 530px;
+    filter: drop-shadow(3px 4px 4px #3338);
 }
 
 .post-it {
@@ -179,6 +291,26 @@ footer {
         padding: 25px 15px;
     }
 
+    .about-page nav {
+        position: fixed;
+        top: 25px;
+        left: 15px;
+        padding: 0;
+    }
+
+    .about-page nav::before {
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 95px;
+    }
+
+    .social-links {
+        position: static;
+        justify-content: flex-end;
+        margin: 0 20px 20px;
+    }
+
     main {
         margin-top: 0;
         padding: 20px;
@@ -192,8 +324,12 @@ footer {
         width: auto;
     }
 
+    .about-paper {
+        width: calc(100% - 40px);
+    }
+
     .say-hi,
-    .home-image,
+    .home-visual,
     .post-it {
         position: relative;
         top: auto;
@@ -207,10 +343,16 @@ footer {
         margin: 20px 0;
     }
 
-    .home-image {
+    .home-visual {
         display: block;
         width: 100%;
         max-width: 550px;
+    }
+
+    .thought-bubble {
+        top: -120px;
+        left: -40px;
+        width: 300px;
     }
 
     .post-it {
