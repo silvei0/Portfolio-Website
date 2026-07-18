@@ -51,7 +51,7 @@ nav {
 }
 
 main {
-    margin-top: 150px;
+    margin-top: 130px;
     padding: 35px;
 }
 
@@ -61,8 +61,10 @@ main h1 {
 }
 
 main h2 {
-    font-size: 20px;
+    font-size: 17px;
     margin-top: 20px;
+    width: 500px;
+    line-height: 1.5;
 }
 
 .say-hi {
