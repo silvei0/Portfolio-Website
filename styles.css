@@ -1,8 +1,87 @@
+/* Fonts */
+@font-face {
+    font-family: "CustomFont";
+    src: url("assets/font/BRHendrix-Medium-BF6556d1b4e12b2.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "CustomFontBold";
+    src: url("assets/font/BRHendrix-Bold-BF6556d1b5459d3.otf") format("opentype");
+}
+
+/* Shared layout */
 body {
     background-color: #eae9e5;
     font-family: "CustomFont", sans-serif;
 }
 
+nav {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    width: 100%;
+    font-size: 18px;
+}
+
+nav a {
+    padding: 8px;
+    color: #333;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+nav a:hover {
+    color: #777;
+}
+
+nav a[aria-current="page"] {
+    font-family: "CustomFontBold", sans-serif;
+}
+
+main {
+    margin-top: 100px;
+    padding: 50px;
+}
+
+main h1 {
+    margin-bottom: 0;
+    font-size: 75px;
+}
+
+main h2 {
+    width: 500px;
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+footer {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    width: 100%;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* About page */
+.about-page {
+    min-height: 100vh;
+    background-image: url("assets/about-background.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.about-page nav a {
+    color: #f5f2e8;
+}
+
+.about-page nav a:hover {
+    color: #c4a484;
+}
+
+/* Home page */
 .blue {
     color: #215caa;
 }
@@ -24,47 +103,6 @@ body {
 
 .hop span:hover {
     transform: translateY(-10px);
-}
-
-nav a {
-    color: #333;
-    text-decoration: none;
-    padding: 8px;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-nav a:hover {
-    color: #777;
-}
-
-nav a[aria-current="page"] {
-    font-family: "CustomFontBold", sans-serif;
-}
-
-nav {
-    position: fixed;
-    top: 40px;
-    left: 40px;
-    width: 100%;
-    font-size: 18px;
-}
-
-main {
-    margin-top: 130px;
-    padding: 35px;
-}
-
-main h1 {
-    font-size: 75px;
-    margin-bottom: 0;
-}
-
-main h2 {
-    font-size: 17px;
-    margin-top: 20px;
-    width: 500px;
-    line-height: 1.5;
 }
 
 .say-hi {
@@ -89,33 +127,100 @@ main h2 {
     animation: pop 0.4s;
 }
 
+.home-image {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    width: 550px;
+}
+
+.post-it {
+    position: absolute;
+    width: 180px;
+    box-shadow: 4px 4px 10px #777;
+    cursor: grab;
+    touch-action: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-it-1 {
+    bottom: 90px;
+    left: 60px;
+}
+
+.post-it-2 {
+    bottom: 100px;
+    left: 430px;
+}
+
+.post-it-3 {
+    bottom: 50px;
+    left: 200px;
+}
+
+.post-it:hover {
+    transform: translateY(-5px);
+    box-shadow: 7px 9px 14px #777;
+}
+
+.post-it:active {
+    cursor: grabbing;
+}
+
 @keyframes pop {
     50% { transform: scale(1.15); }
 }
 
-.home-image {
-    position: absolute;
-    right: 40px;
-    width: 550px;
-    bottom: 40px;
-}
+/* Smaller screens */
+@media (max-width: 900px) {
+    nav {
+        position: static;
+        width: auto;
+        padding: 25px 15px;
+    }
 
-footer {
-    position: fixed;
-    bottom: 20px;
-    left: 30px;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    color: #666;
-}
+    main {
+        margin-top: 0;
+        padding: 20px;
+    }
 
-@font-face {
-    font-family: "CustomFontBold";
-    src: url(assets/font/BRHendrix-Bold-BF6556d1b5459d3.otf) format("opentype");
-}
+    main h1 {
+        font-size: 50px;
+    }
 
-@font-face {
-    font-family: "CustomFont";
-    src: url(assets/font/BRHendrix-Medium-BF6556d1b4e12b2.otf) format("opentype");
+    main h2 {
+        width: auto;
+    }
+
+    .say-hi,
+    .home-image,
+    .post-it {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+    }
+
+    .say-hi {
+        display: block;
+        margin: 20px 0;
+    }
+
+    .home-image {
+        display: block;
+        width: 100%;
+        max-width: 550px;
+    }
+
+    .post-it {
+        width: 140px;
+        margin: 20px 5px;
+    }
+
+    footer {
+        position: static;
+        width: auto;
+        margin-top: 30px;
+    }
 }
