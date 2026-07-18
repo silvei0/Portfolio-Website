@@ -65,6 +65,33 @@ main h2 {
     margin-top: 20px;
 }
 
+.say-hi {
+    position: absolute;
+    right: 70px;
+    bottom: 120px;
+    z-index: 1;
+    padding: 8px 16px;
+    color: #333;
+    background-color: #eae9e5;
+    border: 1px solid #777;
+    border-radius: 20px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.say-hi:hover {
+    color: white;
+    background-color: #777;
+}
+
+.say-hi.clicked {
+    animation: pop 0.4s;
+}
+
+@keyframes pop {
+    50% { transform: scale(1.15); }
+}
+
 .home-image {
     position: absolute;
     right: 40px;
