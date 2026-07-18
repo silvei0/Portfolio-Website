@@ -11,6 +11,10 @@ nav a {
     text-underline-offset: 5px;
 }
 
+nav a[aria-current="page"] {
+    font-family: "CustomFontBold", sans-serif;
+}
+
 nav {
     position: fixed;
     top: 30px;
@@ -31,6 +35,11 @@ footer {
     text-align: center;
     font-size: 14px;
     color: #666;
+}
+
+@font-face {
+    font-family: "CustomFontBold";
+    src: url(assets/font/BRHendrix-Bold-BF6556d1b5459d3.otf) format("opentype");
 }
 
 @font-face {
