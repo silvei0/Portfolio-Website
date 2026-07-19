@@ -1,0 +1,106 @@
+{
+  "siteName": "Fiza Mansoor",
+  "title": "Project title",
+  "subtitle": "Optional one-line project descriptor",
+  "description": "Explain what the project is, who it serves, and the value it creates in one clear sentence.",
+  "metaDescription": "A project case study by Fiza Mansoor.",
+  "discipline": "Your discipline",
+  "status": "In progress",
+  "timeline": "Month–Month 2026",
+  "projectType": "Personal",
+  "role": "Your role",
+  "tools": ["Tool one", "Tool two"],
+  "hero": {
+    "placeholder": "Main project image",
+    "placeholderHint": "Add your image path as the src value in project.json",
+    "alt": "Placeholder for the main project image",
+    "caption": "Describe what the image shows and why it matters."
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "id": "overview",
+      "title": "Overview",
+      "intro": "Give the reader the essential context and explain why the project mattered.",
+      "blocks": [
+        {
+          "type": "two-column",
+          "columns": [
+            {
+              "blocks": [
+                {
+                  "type": "text",
+                  "title": "Goals",
+                  "listStyle": "ticks",
+                  "items": ["First project goal", "Second project goal", "Definition of success"]
+                }
+              ]
+            },
+            {
+              "blocks": [
+                {
+                  "type": "text",
+                  "title": "My contribution",
+                  "content": "State what you owned, what you collaborated on, and the decisions you influenced."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "process",
+      "title": "Process",
+      "intro": "Focus on evidence, decisions, testing, and refinement rather than listing every task.",
+      "blocks": [
+        {
+          "type": "process-step",
+          "title": "Research",
+          "content": "Explain what you needed to learn and what changed because of the findings.",
+          "show": "notes, source data, site analysis, precedents, or user needs.",
+          "image": {
+            "placeholder": "Research image",
+            "alt": "Placeholder for research evidence",
+            "caption": "Explain the evidence shown here."
+          }
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "outcome",
+      "title": "Outcome and impact",
+      "navTitle": "Outcome",
+      "intro": "Connect the finished work back to the original goals and support the result with evidence.",
+      "blocks": [
+        {
+          "type": "image",
+          "placeholder": "Final outcome image",
+          "alt": "Placeholder for the final project outcome",
+          "caption": "Describe the final work and its most important feature.",
+          "size": "wide",
+          "style": "framed"
+        },
+        {
+          "type": "text",
+          "content": "State the result, its impact, the evidence of success, and any honest limitations."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "reflection",
+      "title": "Reflection",
+      "blocks": [
+        {
+          "type": "callout",
+          "variant": "subtle",
+          "title": "What I learned",
+          "content": "End with a specific lesson and the next improvement you would make."
+        }
+      ]
+    }
+  ]
+}

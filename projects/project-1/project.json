@@ -1,0 +1,244 @@
+{
+  "siteName": "Fiza Mansoor",
+  "title": "Project Title",
+  "description": "A short, specific sentence explaining what the project is, who it serves, and the value it creates.",
+  "metaDescription": "A detailed project case study by Fiza Mansoor.",
+  "discipline": "Your discipline",
+  "status": "In progress",
+  "timeline": "Month–Month 2026",
+  "projectType": "Personal / Client / Team",
+  "tools": ["Tool", "Tool", "Tool"],
+  "externalLinks": [
+    {
+      "label": "View the full project plan",
+      "hint": "Open in Notion ↗",
+      "url": "https://slender-troodon-05c.notion.site/Smart-Sustainable-Urban-Drainage-System-SUDS-Design-39e59cd13a0780b98c75f8c3db56936f",
+      "icon": "../../assets/logos/notion.svg",
+      "style": "primary"
+    }
+  ],
+  "hero": {
+    "placeholder": "Main project image",
+    "placeholderHint": "Replace this area with a descriptive project image",
+    "alt": "Placeholder for the main project image",
+    "caption": "A concise caption that explains what the reader is seeing."
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "id": "overview",
+      "title": "Overview",
+      "intro": "Start with the context a new reader needs. Describe the project, its purpose, and why it mattered in two or three clear sentences.",
+      "guide": "the main project goals, your contribution, your discipline, and a clear definition of success.",
+      "blocks": [
+        {
+          "type": "two-column",
+          "columns": [
+            {
+              "blocks": [
+                {
+                  "type": "text",
+                  "title": "Goals",
+                  "listStyle": "ticks",
+                  "items": [
+                    "State the most important project goal.",
+                    "Describe what success needed to look like.",
+                    "Include a practical or user-focused objective."
+                  ]
+                }
+              ]
+            },
+            {
+              "blocks": [
+                {
+                  "type": "text",
+                  "title": "My contribution",
+                  "content": "Explain exactly what you owned, what you collaborated on, and how your discipline contributed to the project."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "placeholder": "Project overview image",
+          "alt": "Placeholder for a project overview image",
+          "caption": "Use this caption to introduce what the project image shows.",
+          "size": "wide",
+          "style": "framed"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "process",
+      "title": "Process",
+      "intro": "Share the moments that changed the work, rather than trying to document every task.",
+      "guide": "the evidence you gathered, alternatives you explored, decisions you made, feedback you received, and how the work improved.",
+      "blocks": [
+        {
+          "type": "process-step",
+          "title": "Research",
+          "content": "Explain what you needed to understand first and which findings shaped the direction of the project.",
+          "show": "research notes, precedents, site analysis, user needs, requirements, or source data.",
+          "image": {
+            "placeholder": "Research image",
+            "alt": "Placeholder for research evidence",
+            "caption": "Add research notes, source data, site analysis, or another image that supports your findings."
+          }
+        },
+        {
+          "type": "process-step",
+          "title": "Design",
+          "content": "Present the early ideas you explored and explain why one direction became more promising than the others.",
+          "show": "sketches, options, diagrams, concepts, moodboards, or design principles.",
+          "image": {
+            "placeholder": "Design image",
+            "alt": "Placeholder for an early design image",
+            "caption": "Use a sketch, concept, option study, or diagram that shows how the design direction emerged."
+          }
+        },
+        {
+          "type": "process-step",
+          "title": "Development",
+          "content": "Describe how the selected idea became more resolved, practical, coordinated, and technically credible.",
+          "show": "drawings, models, prototypes, calculations, specifications, or coordination work.",
+          "image": {
+            "placeholder": "Development image",
+            "alt": "Placeholder for project development work",
+            "caption": "Add a developed drawing, model, prototype, calculation, or coordinated technical detail."
+          }
+        },
+        {
+          "type": "process-step",
+          "title": "Testing",
+          "content": "Share the checks, feedback, simulations, reviews, or observations used to evaluate the developing work.",
+          "show": "test results, review comments, comparisons, validation criteria, or user feedback.",
+          "image": {
+            "placeholder": "Testing image",
+            "alt": "Placeholder for testing evidence",
+            "caption": "Show test results, feedback, a comparison, simulation output, or evidence used to assess the work."
+          }
+        },
+        {
+          "type": "process-step",
+          "title": "Refinement",
+          "content": "Explain what changed after testing and how those final decisions improved clarity, usability, or performance.",
+          "show": "before-and-after comparisons, final adjustments, resolved details, or lessons applied.",
+          "image": {
+            "placeholder": "Refinement image",
+            "alt": "Placeholder for the refined project design",
+            "caption": "Use a final detail or before-and-after comparison to make the refinement visible."
+          }
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "challenge",
+      "title": "The challenge",
+      "navTitle": "Challenge",
+      "intro": "Write the central problem clearly from the user, client, or project point of view.",
+      "guide": "evidence that the problem exists, who it affects, why it matters, and the constraints or competing priorities that made it difficult.",
+      "blocks": [
+        {
+          "type": "callout",
+          "variant": "problem",
+          "title": "Problem #1 — Problem name",
+          "content": [
+            "Explain the main gap, risk, inefficiency, unmet need, or opportunity in clear and specific terms.",
+            "Evidence: Add the observation, data, feedback, or condition that proves this problem exists."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "problem",
+          "title": "Problem #2 — Problem name",
+          "content": [
+            "Explain the second issue and how it compounds, influences, or conflicts with the first problem.",
+            "Consequence: State what happens if this problem is not addressed."
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "Key insight",
+          "content": "Highlight the research finding or realization that changed the direction of the work."
+        },
+        {
+          "type": "image",
+          "placeholder": "Challenge evidence",
+          "alt": "Placeholder for evidence of the project challenge",
+          "caption": "Show the condition, data, comparison, or constraint that makes the challenge understandable.",
+          "size": "wide",
+          "style": "framed"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "outcome",
+      "title": "Outcome and impact",
+      "navTitle": "Outcome",
+      "intro": "Describe the final result and connect it back to the original goals. Use measured outcomes where they are available and be clear when results are qualitative.",
+      "blocks": [
+        {
+          "type": "margin-notes",
+          "notes": [
+            { "text": "Lead with the clearest result." },
+            { "text": "Show the thinking, not only the final image." }
+          ]
+        },
+        {
+          "type": "text",
+          "content": [
+            "Final outcome: Explain what you produced and how the completed work addressed the original challenge.",
+            "Impact: Describe what improved for users, the client, the environment, project performance, or future work.",
+            "Evidence of success: Include any relevant measurements, testing, feedback, approval, comparison, or observed result. Mention limitations honestly when evidence is qualitative."
+          ]
+        },
+        {
+          "type": "image",
+          "placeholder": "Final outcome image",
+          "placeholderHint": "Use the strongest image of the finished work",
+          "alt": "Placeholder for the final project image",
+          "caption": "Describe the final work and its most important feature.",
+          "size": "wide",
+          "style": "framed"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "reflection",
+      "title": "Reflection",
+      "intro": "Close the case study with an honest assessment of the work and what it changed in your practice.",
+      "guide": "what worked, what you learned, what you would change, and the most valuable next step.",
+      "blocks": [
+        {
+          "type": "callout",
+          "variant": "subtle",
+          "title": "What worked well",
+          "content": "Identify a decision, method, collaboration, or result that made the project stronger."
+        },
+        {
+          "type": "callout",
+          "variant": "subtle",
+          "title": "What I learned",
+          "content": "Share a specific lesson about the work, collaboration, technical process, or your own practice."
+        },
+        {
+          "type": "callout",
+          "variant": "subtle",
+          "title": "What I would do next",
+          "content": "Describe the next test, improvement, or phase you would prioritise with more time."
+        },
+        {
+          "type": "callout",
+          "variant": "conclusion",
+          "title": "Final takeaway",
+          "content": "End with one concise sentence that captures why this project matters to you and what it demonstrates about your approach."
+        }
+      ]
+    }
+  ]
+}
