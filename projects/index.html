@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+    <meta name="description" content="Explore the latest, featured, and in-progress projects by Fiza Mansoor.">
+    <title>Projects | Fiza Mansoor</title>
     <link rel="stylesheet" href="../styles.css">
     <script src="../projects.js" defer></script>
 </head>
 <body class="projects-page">
     <header>
-        <nav>
+        <nav aria-label="Main navigation">
             <a href="../home/">Home</a>
             <a href="../about-me/">About</a>
             <a href="./" aria-current="page">Projects</a>
@@ -32,118 +33,36 @@
             </h1>
             <img class="theodolite" src="../assets/theodolite.png" alt="">
         </div>
-        <section class="projects-content">
+        <section class="projects-content" data-project-archive data-projects-source="./projects.json">
+            <noscript>
+                <p class="paper-panel projects-script-message">Enable JavaScript to load the project archive.</p>
+            </noscript>
             <div class="projects-columns">
                 <section class="paper-panel recent-projects">
                     <div class="updates-tab">Updates</div>
-                    <div class="updates-list">
-                        <div class="update-item">
-                            <span>Update 01</span>
-                            <div><i></i><i></i></div>
-                        </div>
-                        <div class="update-item">
-                            <span>Update 02</span>
-                            <div><i></i><i></i></div>
-                        </div>
-                        <div class="update-item">
-                            <span>Update 03</span>
-                            <div><i></i><i></i></div>
-                        </div>
+                    <div class="updates-list" data-project-list="updates" aria-live="polite" aria-busy="true">
+                        <p class="projects-loading">Loading project updates…</p>
                     </div>
                     <div class="working-tab">Currently Working on Projects</div>
-                    <div class="posts-grid working-projects">
-                        <article class="post-card" aria-label="Blank current project">
-                            <div class="post-thumbnail"></div>
-                            <div class="post-title"></div>
-                            <div class="post-description"></div>
-                            <div class="post-description short"></div>
-                        </article>
-                        <article class="post-card" aria-label="Blank current project">
-                            <div class="post-thumbnail"></div>
-                            <div class="post-title"></div>
-                            <div class="post-description"></div>
-                            <div class="post-description short"></div>
-                        </article>
+                    <div class="posts-grid working-projects" data-project-list="working" aria-live="polite" aria-busy="true">
+                        <p class="projects-loading">Loading current projects…</p>
                     </div>
                     <h2>Recent Projects</h2>
-                    <div class="posts-grid">
-                        <article class="post-card" aria-label="Blank project post">
-                            <div class="post-thumbnail"></div>
-                            <div class="post-title"></div>
-                            <div class="post-description"></div>
-                            <div class="post-description short"></div>
-                        </article>
-                        <article class="post-card" aria-label="Blank project post">
-                            <div class="post-thumbnail"></div>
-                            <div class="post-title"></div>
-                            <div class="post-description"></div>
-                            <div class="post-description short"></div>
-                        </article>
-                        <article class="post-card" aria-label="Blank project post">
-                            <div class="post-thumbnail"></div>
-                            <div class="post-title"></div>
-                            <div class="post-description"></div>
-                            <div class="post-description short"></div>
-                        </article>
+                    <div class="posts-grid" data-project-list="recent" aria-live="polite" aria-busy="true">
+                        <p class="projects-loading">Loading recent projects…</p>
                     </div>
                 </section>
                 <aside class="paper-panel featured-projects">
                     <h2>Featured Projects</h2>
-                    <div class="posts-grid">
-                        <article class="post-card" aria-label="Blank featured project">
-                            <div class="post-thumbnail"></div>
-                            <div class="post-title"></div>
-                            <div class="post-description"></div>
-                            <div class="post-description short"></div>
-                        </article>
-                        <article class="post-card" aria-label="Blank featured project">
-                            <div class="post-thumbnail"></div>
-                            <div class="post-title"></div>
-                            <div class="post-description"></div>
-                            <div class="post-description short"></div>
-                        </article>
+                    <div class="posts-grid" data-project-list="featured" aria-live="polite" aria-busy="true">
+                        <p class="projects-loading">Loading featured projects…</p>
                     </div>
                 </aside>
             </div>
             <section class="paper-panel all-posts">
                 <h2>All Posts</h2>
-                <div class="posts-grid">
-                    <article class="post-card" aria-label="Blank project post">
-                        <div class="post-thumbnail"></div>
-                        <div class="post-title"></div>
-                        <div class="post-description"></div>
-                        <div class="post-description short"></div>
-                    </article>
-                    <article class="post-card" aria-label="Blank project post">
-                        <div class="post-thumbnail"></div>
-                        <div class="post-title"></div>
-                        <div class="post-description"></div>
-                        <div class="post-description short"></div>
-                    </article>
-                    <article class="post-card" aria-label="Blank project post">
-                        <div class="post-thumbnail"></div>
-                        <div class="post-title"></div>
-                        <div class="post-description"></div>
-                        <div class="post-description short"></div>
-                    </article>
-                    <article class="post-card" aria-label="Blank project post">
-                        <div class="post-thumbnail"></div>
-                        <div class="post-title"></div>
-                        <div class="post-description"></div>
-                        <div class="post-description short"></div>
-                    </article>
-                    <article class="post-card" aria-label="Blank project post">
-                        <div class="post-thumbnail"></div>
-                        <div class="post-title"></div>
-                        <div class="post-description"></div>
-                        <div class="post-description short"></div>
-                    </article>
-                    <article class="post-card" aria-label="Blank project post">
-                        <div class="post-thumbnail"></div>
-                        <div class="post-title"></div>
-                        <div class="post-description"></div>
-                        <div class="post-description short"></div>
-                    </article>
+                <div class="posts-grid" data-project-list="all" aria-live="polite" aria-busy="true">
+                    <p class="projects-loading">Loading all projects…</p>
                 </div>
             </section>
         </section>

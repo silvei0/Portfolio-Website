@@ -3,8 +3,15 @@
   "title": "Project Title",
   "description": "A short, specific sentence explaining what the project is, who it serves, and the value it creates.",
   "metaDescription": "A detailed project case study by Fiza Mansoor.",
+  "tags": [""],
+  "archive": {
+    "visibility": "public",
+    "featured": true,
+    "currentlyWorking": true,
+    "date": "2026-07-19"
+  },
   "discipline": "Your discipline",
-  "status": "In progress",
+  "status": "On Hold",
   "timeline": "Month–Month 2026",
   "projectType": "Personal / Client / Team",
   "tools": ["Tool", "Tool", "Tool"],

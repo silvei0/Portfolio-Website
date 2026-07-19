@@ -63,6 +63,17 @@
         if (list.children.length) parent.append(list);
     };
 
+    const renderTags = (tags, className = "project-tags") => {
+        if (!Array.isArray(tags)) return null;
+        const values = [...new Set(tags.filter(hasValue).map(tag => String(tag).trim()))].slice(0, 8);
+        if (!values.length) return null;
+
+        const wrapper = createElement("div", className);
+        wrapper.setAttribute("aria-label", "Project tags");
+        values.forEach(tag => wrapper.append(createElement("span", "project-tag", tag)));
+        return wrapper;
+    };
+
     const appendCaption = (figure, caption) => {
         if (hasValue(caption)) figure.append(createElement("figcaption", "", caption));
     };
@@ -537,6 +548,8 @@
         appendHeading(copy, project.title || "Untitled project", 1);
         if (hasValue(project.subtitle)) copy.append(createElement("p", "project-subtitle", project.subtitle));
         appendText(copy, project.description, "project-summary");
+        const tags = renderTags(project.tags);
+        if (tags) copy.append(tags);
         const externalLinks = renderExternalLinks(project.externalLinks);
         if (externalLinks) copy.append(externalLinks);
         hero.append(copy);

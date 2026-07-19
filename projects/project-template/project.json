@@ -4,6 +4,18 @@
   "subtitle": "Optional one-line project descriptor",
   "description": "Explain what the project is, who it serves, and the value it creates in one clear sentence.",
   "metaDescription": "A project case study by Fiza Mansoor.",
+  "tags": ["Tag one", "Tag two"],
+  "archive": {
+    "visibility": "private",
+    "featured": false,
+    "currentlyWorking": false,
+    "date": "2026-01-01",
+    "cardDescription": "Optional shorter description used only on the projects archive.",
+    "thumbnail": {
+      "placeholder": "Project preview",
+      "alt": "Placeholder for the project thumbnail"
+    }
+  },
   "discipline": "Your discipline",
   "status": "In progress",
   "timeline": "Month–Month 2026",
