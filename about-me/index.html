@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>About Fiza | Fiza's Project Portfolio</title>
+    <link rel="icon" type="image/png" href="../assets/site-icon-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;display=swap">
     <link rel="stylesheet" href="../styles.css">
     <script src="../about.js" defer></script>
@@ -18,21 +21,131 @@
         </nav>
     </header>
     <main>
-        <div class="about-sheet">
-            <img class="about-paper" src="../assets/about-paper.jpg" alt="Paper">
-            <img class="about-photo" src="../assets/me-with-paperclip.png" alt="Fiza">
-            <div class="about">
-                <h1>About Me</h1>
+        <section class="about-intro" aria-labelledby="about-title">
+            <h1 id="about-title" class="ransom-title about-ransom-title" aria-label="About Me">
+                <span><img src="../assets/about-title/letter-a.png" alt=""></span>
+                <span><img src="../assets/about-title/letter-b.png" alt=""></span>
+                <span><img src="../assets/about-title/letter-o.png" alt=""></span>
+                <span><img src="../assets/about-title/letter-u.png" alt=""></span>
+                <span><img src="../assets/about-title/letter-t.png" alt=""></span>
+                <span class="about-title-break"><img src="../assets/about-title/letter-m.png" alt=""></span>
+                <span><img src="../assets/about-title/letter-e.png" alt=""></span>
+            </h1>
+
+            <div class="about-portrait-wrap">
+                <figure class="about-portrait">
+                    <img src="../assets/picture-of-me.jpeg" alt="Portrait of Fiza">
+                </figure>
+            </div>
+
+            <div class="about-copy">
+                <div class="about-copy-columns">
+                    <h2>&ldquo;Tell me about yourself&rdquo;</h2>
+                    <p>
+                        I'm an incoming Civil Engineering student who likes understanding how things work, then figuring out how they can work better. I'm especially interested in how structures, transport and public spaces shape the way people experience the places around them.
+                    </p>
+                    <p>
+                        A lot of my interests sit between technical and creative work. I enjoy maths and physics, alongside mapping, visual design and turning information into something clear and useful. I've been exploring tools such as GIS and CAD, usually through small projects where I can learn by actually making something. I'm particularly interested in sustainable and resilient infrastructure. Some of my projects have led me to explore urban flooding, drainage and SuDS, including how mapping and digital technology can help identify problems and develop better responses. Outside engineering, music is a big part of my life. I play bass, read a lot, go hiking and climb. I tend to become interested in something and want to understand it properly, whether that's a new piece of music, a book, a place I'm exploring or a project I'm working on.
+                    </p>
+                    <p>
+                        I'm still at the beginning of my engineering journey, so this portfolio is a record of what I'm learning, what I'm making and where my interests take me.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-details" aria-label="More about Fiza">
+            <div class="about-table-card about-table-card-left">
+                <h2>Quick facts</h2>
+                <table>
+                    <tbody>
+                        <tr><th scope="row">Current stage</th><td>Incoming Civil Engineering student</td></tr>
+                        <tr><th scope="row">A-levels</th><td>Mathematics, Physics and Geography</td></tr>
+                        <tr><th scope="row">Main focus</th><td>Building strong technical foundations</td></tr>
+                        <tr><th scope="row">Portfolio goal</th><td>Document projects and visible progress</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="about-table-card about-table-card-right">
+                <h2>What I use</h2>
+                <table>
+                    <tbody>
+                        <tr><th scope="row">CAD + BIM</th><td>AutoCAD, Revit, Civil 3D</td></tr>
+                        <tr><th scope="row">Data + mapping</th><td>Excel, GIS</td></tr>
+                        <tr><th scope="row">Code</th><td>Python, HTML, CSS, JavaScript</td></tr>
+                        <tr><th scope="row">Working style</th><td>Research, sketch, test, improve</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="about-table-card about-table-card-extra">
+                <h2>Beyond engineering</h2>
+                <table>
+                    <tbody>
+                        <tr><th scope="row">I enjoy</th><td>Designing, photography and exploring new places</td></tr>
+                        <tr><th scope="row">I value</th><td>Curiosity, independence and clear communication</td></tr>
+                        <tr><th scope="row">I learn best by</th><td>Trying ideas, making mistakes and improving them</td></tr>
+                        <tr><th scope="row">Next goal</th><td>Documenting more university and personal projects</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="about-tags" aria-label="Hard skills and experience">
+            <span>AutoCAD</span><span>QGIS</span><span>ArcGIS</span><span>Excel</span>
+            <span>GIS</span><span>Technical Drawing</span><span>Spatial Analysis</span>
+            <span>Data Analysis</span><span>Flood Mapping</span><span>SuDS Design</span>
+            <span>Drainage Design</span><span>Site Analysis</span><span>Sustainable Design</span>
+            <span>CAD</span><span>Mapping</span><span>Engineering Design</span><span>Research</span>
+            <span>Technical Reporting</span><span>Data Visualisation</span><span>Web Design</span>
+        </div>
+
+        <section class="website-story" aria-labelledby="website-story-title">
+            <span class="paper-tape" aria-hidden="true"></span>
+            <div class="website-story-copy">
+                <h2 id="website-story-title">How was this website made?</h2>
                 <p>
-                    Hi, I’m Fiza. I’ve recently completed my A-levels in Mathematics, Physics and Geography, and I’m preparing to begin my degree in Civil Engineering.
-                    This summer, I’m focused on building the technical foundations I want to carry into university and beyond. I’m developing my skills across engineering software, programming and digital design, including AutoCAD, Revit, Civil 3D, GIS, Python and Excel, while building independent projects that let me apply what I learn.
+                    I built this website directly with HTML, CSS and JavaScript rather than using a portfolio template. I planned each page, wrote the layouts and interactions, organised the project files, and used my own images and textures throughout. The main reason for making it this way was to develop practical coding skills by working through real design problems.
+                </p>
+                <p>
+                    Most of my research came from Google, YouTube and Reddit. I also used AI when I needed an explanation, help understanding an error or guidance on what to learn next, but it did not generate the finished website for me. I would use AI again as a support tool because it can save time, but I still want to understand the code and be able to build and change things myself.
                 </p>
             </div>
-        </div>
-                <img class="about-paper" src="../assets/about-paper.jpg" alt="">
+        </section>
+
+        <section class="about-board-section" aria-label="Pinned notes about Fiza">
+            <div class="about-corkboard">
+                <article class="board-note board-note-yellow">
+                    <span class="note-pin" aria-hidden="true"></span>
+                    <h3>Right now</h3>
+                    <p>Preparing for university and practising CAD, modelling and Python through small projects.</p>
+                </article>
+                <article class="board-note board-note-cream">
+                    <span class="note-pin" aria-hidden="true"></span>
+                    <h3>What interests me</h3>
+                    <p>Structures, transport, mapping, construction and the small design choices that change how a place works.</p>
+                </article>
+                <article class="board-note board-note-blue">
+                    <span class="note-pin" aria-hidden="true"></span>
+                    <h3>How I approach work</h3>
+                    <p>I like to understand the problem first, organise the information, test an idea and improve it.</p>
+                </article>
+                <article class="board-note board-note-pink">
+                    <span class="note-pin" aria-hidden="true"></span>
+                    <h3>What you will find here</h3>
+                    <p>Coursework experiments, software practice, engineering ideas and notes on what I learned.</p>
+                </article>
+                <article class="board-note board-note-small">
+                    <span class="note-pin" aria-hidden="true"></span>
+                    <h3>Next</h3>
+                    <p>Keep building, document more clearly and turn practice into finished work.</p>
+                </article>
+            </div>
+        </section>
     </main>
     <footer>
-        <p>&copy; 2027 My Website. All rights reserved.</p>
+        <p>&copy; 2027 Fiza's Project Portfolio. All rights reserved.</p>
         <p>Built from scratch by Fiza, without generative AI.</p>
     </footer>
 </body>

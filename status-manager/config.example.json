@@ -1,0 +1,11 @@
+{
+  "repositoryPath": "..",
+  "statusJsonPath": "status.json",
+  "defaultStatus": "offline",
+  "gitRemote": "origin",
+  "gitBranch": "master",
+  "commitMessage": "Update status",
+  "autoPush": true,
+  "characterLimit": 80,
+  "recentStatusesLimit": 8
+}

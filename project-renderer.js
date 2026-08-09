@@ -112,7 +112,8 @@
                 image.alt = "Project image";
                 console.warn("Project renderer: a non-decorative image is missing alt text.", imageData);
             }
-            image.loading = imageData.loading || "lazy";
+            image.loading = imageData.loading || options.loading || "lazy";
+            image.decoding = "async";
             if (hasValue(imageData.width)) image.width = Number(imageData.width);
             if (hasValue(imageData.height)) image.height = Number(imageData.height);
             return image;
@@ -391,6 +392,8 @@
             const image = createElement("img");
             image.src = note.image || "../../assets/blan-post-it.png";
             image.alt = "";
+            image.loading = "lazy";
+            image.decoding = "async";
             wrapper.append(image, createElement("p", "", note.text));
             notes.append(wrapper);
         });
@@ -531,6 +534,7 @@
                 const icon = createElement("img");
                 icon.src = item.icon;
                 icon.alt = "";
+                icon.decoding = "async";
                 link.append(icon);
             }
             const copy = createElement("span");
@@ -558,7 +562,10 @@
         if (facts) hero.append(facts);
 
         const heroData = project.hero || {};
-        const heroVisual = renderImageVisual(heroData, { imageClass: "project-hero-image" });
+        const heroVisual = renderImageVisual(heroData, {
+            imageClass: "project-hero-image",
+            loading: "eager"
+        });
         if (heroVisual) {
             const figure = createElement("figure", "project-hero-media");
             figure.append(heroVisual);
@@ -617,7 +624,7 @@
     };
 
     const updateDocumentMetadata = project => {
-        const siteName = project.siteName || "Fiza Mansoor";
+        const siteName = project.siteName || "Fiza's Project Portfolio";
         document.title = hasValue(project.title) ? `${project.title} | ${siteName}` : siteName;
         const description = project.metaDescription || project.description;
         if (hasValue(description)) {

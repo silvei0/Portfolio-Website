@@ -1,0 +1,7 @@
+# Local status-manager settings and history
+status-manager/config.json
+status-manager/recent-statuses.json
+
+# Python cache files
+__pycache__/
+*.py[cod]

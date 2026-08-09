@@ -4,12 +4,21 @@
     const projectsNav = document.querySelector(".projects-page nav");
 
     if (projectsNav) {
+        let navUpdateFrame = null;
+        let lastNavOpacity = null;
+
         const updateProjectsNav = () => {
             const opacity = Math.min(window.scrollY / 250, 1) * 0.72;
-            projectsNav.style.setProperty("--projects-nav-opacity", opacity);
+            if (opacity !== lastNavOpacity) {
+                projectsNav.style.setProperty("--projects-nav-opacity", opacity);
+                lastNavOpacity = opacity;
+            }
+            navUpdateFrame = null;
         };
 
-        window.addEventListener("scroll", updateProjectsNav, { passive: true });
+        window.addEventListener("scroll", () => {
+            if (navUpdateFrame === null) navUpdateFrame = requestAnimationFrame(updateProjectsNav);
+        }, { passive: true });
         updateProjectsNav();
     }
 
@@ -21,6 +30,12 @@
         [...archiveRoot.querySelectorAll("[data-project-list]")]
             .map(element => [element.dataset.projectList, element])
     );
+    const projectDateFormatter = new Intl.DateTimeFormat("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC"
+    });
 
     const hasText = value => value !== undefined
         && value !== null
@@ -53,12 +68,7 @@
     const formatDate = date => {
         const timestamp = getTimestamp(date);
         if (!Number.isFinite(timestamp)) return "Undated";
-        return new Intl.DateTimeFormat("en-GB", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-            timeZone: "UTC"
-        }).format(new Date(timestamp));
+        return projectDateFormatter.format(new Date(timestamp));
     };
 
     const formatUpdateDate = date => {
@@ -116,6 +126,7 @@
                 ? ""
                 : thumbnail.alt || project.hero?.alt || `${project.title} project thumbnail`;
             image.loading = "lazy";
+            image.decoding = "async";
             if (hasText(thumbnail.width)) image.width = Number(thumbnail.width);
             if (hasText(thumbnail.height)) image.height = Number(thumbnail.height);
             card.append(image);

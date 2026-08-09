@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Fiza's Project Portfolio</title>
+    <link rel="icon" type="image/png" href="../assets/site-icon-favicon.png">
     <link rel="stylesheet" href="../styles.css">
+    <script src="../supabase-config.js" defer></script>
     <script src="../script.js" defer></script>
 </head>
 <body>
@@ -16,8 +18,9 @@
             <a href="../contact-me/">Contact</a>
         </nav>
         <div class="social-links">
-            <a href="mailto:19fizamansoor@gmail.com" aria-label="Email Fiza">
-                <img src="../assets/logos/gmail.svg" alt="">
+            <a class="coffee-button" href="https://buymeacoffee.com/fizamansoor" target="_blank" rel="noopener noreferrer">
+                <img class="coffee-button-icon" src="../assets/logos/buymeacoffee.svg" alt="">
+                <span>Buy me a coffee</span>
             </a>
             <a href="https://github.com/silvei0" target="_blank" rel="noopener noreferrer" aria-label="Fiza on GitHub">
                 <img src="../assets/logos/github.svg" alt="">
@@ -30,19 +33,29 @@
     <main>
         <h1 class="hop"><span>H</span><span>i</span><span>,</span> <span>I</span><span>'</span><span>m</span> <span class="blue">F</span><span class="blue">i</span><span class="blue">z</span><span class="blue">a</span><span>.</span></h1>
         <h2>I'm currently  an incoming Civil Engineering student. I’m learning to design the things we live in, travel across, rely on every day, and rarely stop to think about.</h2>
-        <button type="button" class="say-hi">Say hi!</button>
+        <div class="say-hi-wrap">
+            <p id="say-hi-prompt" class="say-hi-prompt">Tap the wave to send me a hi.</p>
+            <button type="button" class="say-hi" aria-describedby="say-hi-prompt say-hi-status">
+                <img src="../assets/wave-emoji.png" alt="" draggable="false">
+                <span class="sr-only">Send Fiza a hi</span>
+            </button>
+            <p id="say-hi-status" class="say-hi-status" role="status" aria-live="polite"></p>
+        </div>
         <div class="home-visual">
                 <a href="../about-me/">
                     <img class="home-image" src="../assets/GIFME.gif" alt="Fiza">
             </a>
-                <img class="thought-bubble" src="../assets/thought-bubble.png" alt="">
+                <div class="thought-bubble" data-status-bubble data-status-source="../status.json">
+                    <img src="../assets/thought-bubble.png" alt="">
+                    <p class="thought-bubble-status" aria-live="polite" hidden></p>
+                </div>
         </div>
             <img class="post-it post-it-1" src="../assets/post-it-update-.png" alt="Post-it note" draggable="false">
             <img class="post-it post-it-2" src="../assets/post-it-update- (1).png" alt="Post-it note" draggable="false">
             <img class="post-it post-it-3" src="../assets/post-it-update- (2).png" alt="Post-it note" draggable="false">
     </main>
     <footer>
-        <p>&copy; 2027 My Website. All rights reserved.</p>
+        <p>&copy; 2027 Fiza's Project Portfolio. All rights reserved.</p>
         <p>Built from scratch by Fiza, without generative AI.</p>
     </footer>
 </body>
