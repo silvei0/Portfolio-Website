@@ -3,18 +3,23 @@
   "title": "Project Title",
   "description": "A short, specific sentence explaining what the project is, who it serves, and the value it creates.",
   "metaDescription": "A detailed project case study by Fiza Mansoor.",
-  "tags": [""],
   "archive": {
     "visibility": "public",
     "featured": true,
     "currentlyWorking": true,
-    "date": "2026-07-19"
+    "date": "2026-07-19",
+    "thumbnail": {
+      "decorative": false
+    }
   },
   "discipline": "Your discipline",
-  "status": "On Hold",
   "timeline": "Month–Month 2026",
   "projectType": "Personal / Client / Team",
-  "tools": ["Tool", "Tool", "Tool"],
+  "tools": [
+    "Tool",
+    "Tool",
+    "Tool"
+  ],
   "externalLinks": [
     {
       "label": "View the full project plan",
@@ -28,7 +33,8 @@
     "placeholder": "Main project image",
     "placeholderHint": "Replace this area with a descriptive project image",
     "alt": "Placeholder for the main project image",
-    "caption": "A concise caption that explains what the reader is seeing."
+    "caption": "A concise caption that explains what the reader is seeing.",
+    "decorative": false
   },
   "blocks": [
     {
@@ -191,8 +197,12 @@
         {
           "type": "margin-notes",
           "notes": [
-            { "text": "Lead with the clearest result." },
-            { "text": "Show the thinking, not only the final image." }
+            {
+              "text": "Lead with the clearest result."
+            },
+            {
+              "text": "Show the thinking, not only the final image."
+            }
           ]
         },
         {
@@ -246,6 +256,21 @@
           "content": "End with one concise sentence that captures why this project matters to you and what it demonstrates about your approach."
         }
       ]
+    },
+    {
+      "type": "youtube",
+      "url": "https://youtu.be/umneBBjdgbE?si=pYD3-eE5MmLOSfIg",
+      "title": "Project video",
+      "size": "wide",
+      "id": "yt",
+      "hideFromContents": false
     }
-  ]
+  ],
+  "archiveUrl": "../",
+  "archiveLabel": "Project archive",
+  "archiveLinkText": "← All projects",
+  "contactUrl": "../../contact-me/",
+  "contactLabel": "Have a project in mind?",
+  "contactLinkText": "Get in touch →",
+  "backLinkText": "← Back to all projects"
 }

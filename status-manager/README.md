@@ -3,11 +3,40 @@
 This small Windows utility updates the temporary message displayed in the
 thought bubble on the portfolio homepage. It saves `status.json`, commits only
 that file, and pushes the current branch using the Git authentication already
-configured on this computer.
+configured on this computer. The app also requires the shared local manager
+password before its interface opens.
 
-No password, access token, or SSH private key is stored in this project.
+No plaintext manager password, GitHub password, access token, or SSH private
+key is stored in this project.
+
+## Local password protection
+
+The first launch of either portfolio manager asks you to create one shared
+password of at least 10 characters. Later launches of both apps require that
+password. Use **Security > Change manager password…** to replace it, or
+**Security > Lock and exit** when finished.
+
+Only a randomly salted `scrypt` verifier is stored at:
+
+```text
+%LOCALAPPDATA%\FizasPortfolioManagers\auth.json
+```
+
+The plaintext password is not stored there, in the Python source, or on
+GitHub. A strong password cannot simply be read from the verifier, although a
+weak password could still be guessed offline.
+
+This is a local convenience lock, not the security boundary for the live
+website. Someone able to edit the Python source or delete the verifier can
+bypass/reset their local copy. They still cannot push to your repository
+without a GitHub account that has write permission and valid Git credentials.
+Windows sign-in security, device encryption, GitHub permissions, and GitHub
+two-factor authentication remain the important protections.
 
 ## What each file does
+
+The shared password code lives in `../manager_auth.py`; it creates and verifies
+the salted local password record for both manager apps.
 
 - `app.py` — the Tkinter desktop interface and safe Git workflow.
 - `config.json` — your local settings. Git ignores this file.
@@ -39,7 +68,7 @@ Open `config.json`. The supplied settings already match this repository:
 {
   "repositoryPath": "..",
   "statusJsonPath": "status.json",
-  "defaultStatus": "offline",
+  "defaultStatus": "No specific thoughts right now...",
   "gitRemote": "origin",
   "gitBranch": "master",
   "commitMessage": "Update status",
@@ -61,8 +90,10 @@ local. If it is deleted, the app recreates it from `config.example.json`.
 
 ## 3. Run and test the desktop app
 
-Double-click `launch-status-manager.cmd`. Enter a status, choose a duration,
-and select **Update status**. The message at the bottom reports either:
+Double-click `launch-status-manager.cmd`. On the first launch, create the
+shared manager password; later launches ask you to enter it. Then enter a
+status, choose a duration, and select **Update status**. The message at the
+bottom reports either:
 
 - `Status updated and pushed ✓`, or
 - `Status saved locally, but GitHub push failed. ...`
@@ -91,7 +122,7 @@ shortcut; the repository or code editor does not need to be open.
 1. Set the duration input to `1` and choose `minutes`.
 2. Update the status.
 3. Keep the local homepage open.
-4. After one minute, the message changes to `offline` automatically.
+4. After one minute, the message changes to the lighter `No specific thoughts right now...` fallback automatically.
 
 The webpage reloads `status.json` every minute and also schedules the exact
 expiry time after each successful load.

@@ -1,7 +1,7 @@
 {
   "repositoryPath": "..",
   "statusJsonPath": "status.json",
-  "defaultStatus": "offline",
+  "defaultStatus": "No specific thoughts right now...",
   "gitRemote": "origin",
   "gitBranch": "master",
   "commitMessage": "Update status",

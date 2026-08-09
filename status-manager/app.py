@@ -10,6 +10,7 @@ import json
 import os
 import queue
 import subprocess
+import sys
 import threading
 import tkinter as tk
 from datetime import datetime, timedelta, timezone
@@ -19,6 +20,13 @@ from typing import Any, Callable
 
 
 APP_DIR = Path(__file__).resolve().parent
+REPOSITORY_DIR = APP_DIR.parent
+if str(REPOSITORY_DIR) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_DIR))
+
+from manager_auth import PasswordStore
+
+
 CONFIG_PATH = APP_DIR / "config.json"
 EXAMPLE_CONFIG_PATH = APP_DIR / "config.example.json"
 RECENT_PATH = APP_DIR / "recent-statuses.json"
@@ -107,7 +115,7 @@ def load_config() -> dict[str, Any]:
     status_path = resolve_inside(repository, str(config["statusJsonPath"]), "statusJsonPath")
     config["repository"] = repository
     config["statusPath"] = status_path
-    config["defaultStatus"] = str(config.get("defaultStatus", "offline")).strip()
+    config["defaultStatus"] = str(config.get("defaultStatus", "No specific thoughts right now...")).strip()
     config["gitRemote"] = str(config.get("gitRemote", "origin")).strip() or "origin"
     config["gitBranch"] = str(config.get("gitBranch", "")).strip()
     config["commitMessage"] = str(config.get("commitMessage", "Update status")).strip() or "Update status"
@@ -118,12 +126,13 @@ def load_config() -> dict[str, Any]:
 
 
 class StatusManager(tk.Tk):
-    def __init__(self) -> None:
+    def __init__(self, password_store: PasswordStore) -> None:
         super().__init__()
         self.title("Portfolio Status Manager")
         self.geometry("510x640")
         self.minsize(480, 590)
         self.configure(background="#eee7d9")
+        self.password_store = password_store
 
         self.config_data = load_config()
         icon_path = self.config_data["repository"] / "assets" / "site-icon-favicon.png"
@@ -145,11 +154,24 @@ class StatusManager(tk.Tk):
         self.result_queue: queue.Queue[tuple[bool, str]] = queue.Queue()
 
         self._configure_style()
+        self._build_menu()
         self._build_interface()
         self.status_var.trace_add("write", self._on_status_change)
         self._on_status_change()
         self._refresh_current_status()
         self.after(1_000, self._tick)
+
+    def _build_menu(self) -> None:
+        menu_bar = tk.Menu(self)
+        security_menu = tk.Menu(menu_bar, tearoff=False)
+        security_menu.add_command(label="Change manager password…", command=self._change_manager_password)
+        security_menu.add_separator()
+        security_menu.add_command(label="Lock and exit", command=self.destroy)
+        menu_bar.add_cascade(label="Security", menu=security_menu)
+        self.config(menu=menu_bar)
+
+    def _change_manager_password(self) -> None:
+        self.password_store.change_password_interactive(self, "Portfolio Status Manager")
 
     def _configure_style(self) -> None:
         style = ttk.Style(self)
@@ -462,8 +484,16 @@ class StatusManager(tk.Tk):
 
 
 def main() -> None:
+    password_store = PasswordStore()
+    unlock_window = tk.Tk()
+    unlock_window.withdraw()
+    if not password_store.authenticate_interactive(unlock_window, "Portfolio Status Manager"):
+        unlock_window.destroy()
+        return
+    unlock_window.destroy()
+
     try:
-        app = StatusManager()
+        app = StatusManager(password_store)
     except StatusManagerError as error:
         root = tk.Tk()
         root.withdraw()

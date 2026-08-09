@@ -2,6 +2,11 @@
 status-manager/config.json
 status-manager/recent-statuses.json
 
+# Local project-manager settings, backups, and recoverable trash
+project-manager/config.json
+project-manager/.backups/
+project-manager/.trash/
+
 # Python cache files
 __pycache__/
 *.py[cod]

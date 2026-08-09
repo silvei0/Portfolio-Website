@@ -3,16 +3,17 @@ const sayHiStatus = document.querySelector('.say-hi-status');
 
 const statusBubble = document.querySelector('[data-status-bubble]');
 const statusText = statusBubble?.querySelector('.thought-bubble-status');
-const DEFAULT_PORTFOLIO_STATUS = 'offline';
+const DEFAULT_PORTFOLIO_STATUS = 'No specific thoughts right now...';
 const STATUS_REFRESH_INTERVAL = 60_000;
 let statusExpiryTimer = null;
 
-function showPortfolioStatus(value) {
+function showPortfolioStatus(value, isInactive = false) {
     if (!statusText) return;
 
     const status = typeof value === 'string' ? value.trim() : '';
     statusText.textContent = status;
     statusText.hidden = !status;
+    statusText.classList.toggle('thought-bubble-status--inactive', Boolean(status) && isInactive);
 }
 
 function scheduleStatusExpiry(expiresAt, defaultStatus) {
@@ -20,14 +21,14 @@ function scheduleStatusExpiry(expiresAt, defaultStatus) {
 
     const remaining = expiresAt - Date.now();
     if (remaining <= 0) {
-        showPortfolioStatus(defaultStatus);
+        showPortfolioStatus(defaultStatus, true);
         return;
     }
 
     const maximumDelay = 2_147_000_000;
     statusExpiryTimer = window.setTimeout(() => {
         if (expiresAt > Date.now()) scheduleStatusExpiry(expiresAt, defaultStatus);
-        else showPortfolioStatus(defaultStatus);
+        else showPortfolioStatus(defaultStatus, true);
     }, Math.min(remaining, maximumDelay));
 }
 
@@ -48,14 +49,14 @@ async function refreshPortfolioStatus() {
         const expiresAt = Date.parse(data.expiresAt);
         const isActive = status && Number.isFinite(expiresAt) && expiresAt > Date.now();
 
-        showPortfolioStatus(isActive ? status : defaultStatus);
+        showPortfolioStatus(isActive ? status : defaultStatus, !isActive);
 
         if (isActive) scheduleStatusExpiry(expiresAt, defaultStatus);
         else window.clearTimeout(statusExpiryTimer);
     } catch (error) {
         console.warn('Portfolio status could not be loaded.', error);
         window.clearTimeout(statusExpiryTimer);
-        showPortfolioStatus(DEFAULT_PORTFOLIO_STATUS);
+        showPortfolioStatus(DEFAULT_PORTFOLIO_STATUS, true);
     }
 }
 
@@ -152,6 +153,8 @@ function getVisitorInfo() {
     };
 }
 
+const draggablePostItLayout = window.matchMedia('(min-width: 901px) and (pointer: fine)');
+
 document.querySelectorAll('.post-it').forEach(postIt => {
     let pointerOffsetX;
     let pointerOffsetY;
@@ -160,21 +163,39 @@ document.querySelectorAll('.post-it').forEach(postIt => {
     let dragFrame = null;
 
     postIt.onpointerdown = event => {
-        pointerOffsetX = event.clientX - postIt.offsetLeft;
-        pointerOffsetY = event.clientY - postIt.offsetTop;
+        if (!draggablePostItLayout.matches) return;
+
+        const postItRect = postIt.getBoundingClientRect();
+        pointerOffsetX = event.clientX - postItRect.left;
+        pointerOffsetY = event.clientY - postItRect.top;
         postIt.setPointerCapture(event.pointerId);
     };
 
     postIt.onpointermove = event => {
         if (!postIt.hasPointerCapture(event.pointerId)) return;
-        pendingLeft = event.clientX - pointerOffsetX;
-        pendingTop = event.clientY - pointerOffsetY;
+
+        const offsetParent = postIt.offsetParent || document.documentElement;
+        const parentRect = offsetParent.getBoundingClientRect();
+        const maximumLeft = Math.max(0, window.innerWidth - postIt.offsetWidth);
+        const maximumTop = Math.max(0, window.innerHeight - postIt.offsetHeight);
+        const clientLeft = Math.min(Math.max(event.clientX - pointerOffsetX, 0), maximumLeft);
+        const clientTop = Math.min(Math.max(event.clientY - pointerOffsetY, 0), maximumTop);
+
+        pendingLeft = clientLeft - parentRect.left + offsetParent.scrollLeft;
+        pendingTop = clientTop - parentRect.top + offsetParent.scrollTop;
 
         if (dragFrame !== null) return;
         dragFrame = requestAnimationFrame(() => {
+            postIt.style.right = 'auto';
+            postIt.style.bottom = 'auto';
             postIt.style.left = `${pendingLeft}px`;
             postIt.style.top = `${pendingTop}px`;
             dragFrame = null;
         });
+    };
+
+    postIt.onpointercancel = () => {
+        if (dragFrame !== null) cancelAnimationFrame(dragFrame);
+        dragFrame = null;
     };
 });

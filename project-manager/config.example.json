@@ -1,0 +1,12 @@
+{
+  "repositoryPath": "..",
+  "projectsDirectory": "projects",
+  "manifestPath": "projects/projects.json",
+  "templateDirectory": "projects/project-template",
+  "gitRemote": "origin",
+  "gitBranch": "master",
+  "commitMessage": "Update project: {title}",
+  "previewPort": 8767,
+  "autoOpenPreview": true,
+  "backupCount": 10
+}
