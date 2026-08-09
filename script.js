@@ -156,46 +156,176 @@ function getVisitorInfo() {
 const draggablePostItLayout = window.matchMedia('(min-width: 901px) and (pointer: fine)');
 
 document.querySelectorAll('.post-it').forEach(postIt => {
-    let pointerOffsetX;
-    let pointerOffsetY;
-    let pendingLeft;
-    let pendingTop;
+    let activePointerId = null;
+    let pointerOffsetX = 0;
+    let pointerOffsetY = 0;
+    let pendingLeft = null;
+    let pendingTop = null;
+    let dragOffsetParent = null;
+    let dragVisualOffsetX = 0;
+    let dragVisualOffsetY = 0;
+    let dragStartClientX = 0;
+    let dragStartClientY = 0;
+    let hasDragged = false;
+    let originalInlinePosition = null;
     let dragFrame = null;
 
+    function clientPositionToParent(clientLeft, clientTop, offsetParent) {
+        if (offsetParent === document.documentElement || offsetParent === document.body) {
+            return {
+                left: clientLeft + window.scrollX,
+                top: clientTop + window.scrollY
+            };
+        }
+
+        const parentRect = offsetParent.getBoundingClientRect();
+        return {
+            left: clientLeft - parentRect.left - offsetParent.clientLeft + offsetParent.scrollLeft,
+            top: clientTop - parentRect.top - offsetParent.clientTop + offsetParent.scrollTop
+        };
+    }
+
+    function parentPositionToClient(left, top, offsetParent) {
+        if (offsetParent === document.documentElement || offsetParent === document.body) {
+            return {
+                left: left - window.scrollX,
+                top: top - window.scrollY
+            };
+        }
+
+        const parentRect = offsetParent.getBoundingClientRect();
+        return {
+            left: left + parentRect.left + offsetParent.clientLeft - offsetParent.scrollLeft,
+            top: top + parentRect.top + offsetParent.clientTop - offsetParent.scrollTop
+        };
+    }
+
+    function applyPendingPosition() {
+        if (pendingLeft === null || pendingTop === null) return;
+
+        postIt.style.right = 'auto';
+        postIt.style.bottom = 'auto';
+        postIt.style.left = `${pendingLeft}px`;
+        postIt.style.top = `${pendingTop}px`;
+    }
+
+    function finishDrag() {
+        if (activePointerId === null) return;
+
+        if (dragFrame !== null) {
+            cancelAnimationFrame(dragFrame);
+            dragFrame = null;
+            if (hasDragged) applyPendingPosition();
+        }
+
+        if (!hasDragged && originalInlinePosition) {
+            postIt.style.left = originalInlinePosition.left;
+            postIt.style.top = originalInlinePosition.top;
+            postIt.style.right = originalInlinePosition.right;
+            postIt.style.bottom = originalInlinePosition.bottom;
+        }
+
+        activePointerId = null;
+        dragOffsetParent = null;
+        dragVisualOffsetX = 0;
+        dragVisualOffsetY = 0;
+        dragStartClientX = 0;
+        dragStartClientY = 0;
+        hasDragged = false;
+        originalInlinePosition = null;
+        pendingLeft = null;
+        pendingTop = null;
+        postIt.classList.remove('is-dragging');
+        postIt.style.removeProperty('--post-it-drag-transform');
+    }
+
     postIt.onpointerdown = event => {
-        if (!draggablePostItLayout.matches) return;
+        if (!draggablePostItLayout.matches || activePointerId !== null) return;
+
+        event.preventDefault();
 
         const postItRect = postIt.getBoundingClientRect();
+        const computedStyle = getComputedStyle(postIt);
+        originalInlinePosition = {
+            left: postIt.style.left,
+            top: postIt.style.top,
+            right: postIt.style.right,
+            bottom: postIt.style.bottom
+        };
+        dragOffsetParent = postIt.offsetParent || document.documentElement;
+        const computedLeft = Number.parseFloat(computedStyle.left);
+        const computedTop = Number.parseFloat(computedStyle.top);
+        const fallbackPosition = clientPositionToParent(postItRect.left, postItRect.top, dragOffsetParent);
+        const lockedPosition = {
+            left: Number.isFinite(computedLeft) ? computedLeft : fallbackPosition.left,
+            top: Number.isFinite(computedTop) ? computedTop : fallbackPosition.top
+        };
+        const layoutClientPosition = parentPositionToClient(
+            lockedPosition.left,
+            lockedPosition.top,
+            dragOffsetParent
+        );
+
+        dragVisualOffsetX = postItRect.left - layoutClientPosition.left;
+        dragVisualOffsetY = postItRect.top - layoutClientPosition.top;
+
         pointerOffsetX = event.clientX - postItRect.left;
         pointerOffsetY = event.clientY - postItRect.top;
+        dragStartClientX = event.clientX;
+        dragStartClientY = event.clientY;
+        hasDragged = false;
+        pendingLeft = lockedPosition.left;
+        pendingTop = lockedPosition.top;
+        applyPendingPosition();
+        postIt.style.setProperty(
+            '--post-it-drag-transform',
+            computedStyle.transform === 'none' ? 'none' : computedStyle.transform
+        );
+        postIt.classList.add('is-dragging');
+        activePointerId = event.pointerId;
         postIt.setPointerCapture(event.pointerId);
     };
 
     postIt.onpointermove = event => {
-        if (!postIt.hasPointerCapture(event.pointerId)) return;
+        if (event.pointerId !== activePointerId || !postIt.hasPointerCapture(event.pointerId)) return;
 
-        const offsetParent = postIt.offsetParent || document.documentElement;
-        const parentRect = offsetParent.getBoundingClientRect();
-        const maximumLeft = Math.max(0, window.innerWidth - postIt.offsetWidth);
-        const maximumTop = Math.max(0, window.innerHeight - postIt.offsetHeight);
+        if (!hasDragged) {
+            const movement = Math.hypot(
+                event.clientX - dragStartClientX,
+                event.clientY - dragStartClientY
+            );
+            if (movement < 3) return;
+            hasDragged = true;
+        }
+
+        const postItRect = postIt.getBoundingClientRect();
+        const maximumLeft = Math.max(0, window.innerWidth - postItRect.width);
+        const maximumTop = Math.max(0, window.innerHeight - postItRect.height);
         const clientLeft = Math.min(Math.max(event.clientX - pointerOffsetX, 0), maximumLeft);
         const clientTop = Math.min(Math.max(event.clientY - pointerOffsetY, 0), maximumTop);
+        const nextPosition = clientPositionToParent(
+            clientLeft - dragVisualOffsetX,
+            clientTop - dragVisualOffsetY,
+            dragOffsetParent
+        );
 
-        pendingLeft = clientLeft - parentRect.left + offsetParent.scrollLeft;
-        pendingTop = clientTop - parentRect.top + offsetParent.scrollTop;
+        pendingLeft = nextPosition.left;
+        pendingTop = nextPosition.top;
 
         if (dragFrame !== null) return;
         dragFrame = requestAnimationFrame(() => {
-            postIt.style.right = 'auto';
-            postIt.style.bottom = 'auto';
-            postIt.style.left = `${pendingLeft}px`;
-            postIt.style.top = `${pendingTop}px`;
+            applyPendingPosition();
             dragFrame = null;
         });
     };
 
-    postIt.onpointercancel = () => {
-        if (dragFrame !== null) cancelAnimationFrame(dragFrame);
-        dragFrame = null;
+    postIt.onpointerup = event => {
+        if (event.pointerId !== activePointerId) return;
+
+        finishDrag();
+        if (postIt.hasPointerCapture(event.pointerId)) postIt.releasePointerCapture(event.pointerId);
     };
+
+    postIt.onpointercancel = finishDrag;
+    postIt.onlostpointercapture = finishDrag;
 });

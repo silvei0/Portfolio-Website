@@ -3089,6 +3089,8 @@ a.post-card:hover {
     box-shadow: 4px 4px 10px #777;
     cursor: grab;
     touch-action: none;
+    user-select: none;
+    -webkit-user-drag: none;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -3114,6 +3116,15 @@ a.post-card:hover {
 
 .post-it:active {
     cursor: grabbing;
+}
+
+.post-it.is-dragging,
+.post-it.is-dragging:hover {
+    z-index: 25;
+    cursor: grabbing;
+    box-shadow: 7px 9px 14px #777;
+    transform: var(--post-it-drag-transform, none);
+    transition: none;
 }
 
 /* Responsive layout system */
