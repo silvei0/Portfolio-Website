@@ -908,10 +908,10 @@ footer p {
     z-index: -1;
     width: calc(100vw + 180px);
     height: 310px;
-    border: 18px solid #423027;
+    border: 18px solid #201714;
     border-bottom: 0;
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-    box-shadow: 0 -310px 0 310px #423027;
+    box-shadow: 0 -310px 0 310px #201714;
     transform: translateX(-50%);
     pointer-events: none;
 }
@@ -942,7 +942,7 @@ footer p {
         width: calc(100vw + 80px);
         height: 205px;
         border-width: 11px;
-        box-shadow: 0 -205px 0 205px #423027;
+        box-shadow: 0 -205px 0 205px #201714;
     }
 }
 
@@ -3448,7 +3448,7 @@ body > header nav,
         width: calc(100vw + 16px);
         height: 155px;
         border-width: 9px;
-        box-shadow: 0 -155px 0 155px #423027;
+        box-shadow: 0 -155px 0 155px #201714;
     }
 
     .about-ransom-title span {
