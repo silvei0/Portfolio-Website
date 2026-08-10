@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Browse and filter all civil engineering, GIS, CAD, BIM, design and personal projects by Fiza Mansoor.">
+    <title>All Projects | Fiza's Project Portfolio</title>
+    <link rel="icon" type="image/png" href="../../assets/site-icon-favicon.png">
+    <link rel="stylesheet" href="../../styles.css">
+    <script src="../../supabase-config.js" defer></script>
+    <script src="../../traffic.js" defer></script>
+    <script src="../../projects.js" defer></script>
+</head>
+<body class="projects-page all-projects-page">
+    <header>
+        <nav aria-label="Main navigation">
+            <a href="../../home/">Home</a>
+            <a href="../../about-me/">About</a>
+            <a href="../" aria-current="page">Projects</a>
+            <a href="../../contact-me/">Contact</a>
+        </nav>
+    </header>
+    <main id="main-content">
+        <a class="project-back-link all-projects-back-link" href="../">&larr; Project archive</a>
+
+        <section
+            class="all-projects-archive"
+            data-project-archive
+            data-all-projects
+            data-projects-source="../projects.json"
+        >
+            <header class="paper-panel all-projects-intro">
+                <span class="paper-tape" aria-hidden="true"></span>
+                <h1>All Projects</h1>
+                <p>Welcome to my project archive! Browse all my documented projects here, and use the filters to quickly find work by year, project type, software or status.</p>
+            </header>
+
+            <section class="paper-panel project-filters" aria-labelledby="project-filters-title">
+                <div class="project-filters-heading">
+                    <div>
+                        <h2 id="project-filters-title">Filter projects</h2>
+                        <p>Combine filters to narrow down the archive.</p>
+                    </div>
+                    <button class="project-filters-clear" type="button" data-clear-project-filters hidden>Clear filters</button>
+                </div>
+
+                <div class="project-filter-controls">
+                    <label class="project-filter-field">
+                        <span>Year</span>
+                        <select data-project-filter="year">
+                            <option value="all">All</option>
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="earlier">Earlier</option>
+                        </select>
+                    </label>
+
+                    <label class="project-filter-field">
+                        <span>Project Type</span>
+                        <select data-project-filter="type">
+                            <option value="all">All</option>
+                            <option value="civil-engineering">Civil Engineering</option>
+                            <option value="gis">GIS</option>
+                            <option value="cad-bim">CAD / BIM</option>
+                            <option value="design">Design</option>
+                            <option value="personal">Personal</option>
+                        </select>
+                    </label>
+
+                    <label class="project-filter-field">
+                        <span>Software / Tools</span>
+                        <select data-project-filter="tool">
+                            <option value="all">All</option>
+                            <option value="autocad">AutoCAD</option>
+                            <option value="civil-3d">Civil 3D</option>
+                            <option value="revit">Revit</option>
+                            <option value="qgis">QGIS</option>
+                            <option value="excel">Excel</option>
+                            <option value="fusion-360">Fusion 360</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
+
+                    <label class="project-filter-field">
+                        <span>Status</span>
+                        <select data-project-filter="status">
+                            <option value="all">All</option>
+                            <option value="completed">Completed</option>
+                            <option value="in-progress">In Progress</option>
+                        </select>
+                    </label>
+                </div>
+
+                <p class="project-filter-count" data-project-count aria-live="polite">Loading projects&hellip;</p>
+            </section>
+
+            <section class="paper-panel all-projects-results" aria-labelledby="all-projects-results-title">
+                <h2 id="all-projects-results-title" class="sr-only">Projects</h2>
+                <noscript>
+                    <p class="projects-empty">Enable JavaScript to load and filter the project archive.</p>
+                </noscript>
+                <div class="posts-grid all-projects-grid" data-project-list="filtered" aria-live="polite" aria-busy="true">
+                    <p class="projects-loading">Loading projects&hellip;</p>
+                </div>
+            </section>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2027 Fiza's Project Portfolio. All rights reserved.</p>
+        <p>Built from scratch by Fiza, without generative AI.</p>
+    </footer>
+</body>
+</html>

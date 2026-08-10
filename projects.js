@@ -25,11 +25,15 @@
     const archiveRoot = document.querySelector("[data-project-archive]");
     if (!archiveRoot) return;
 
+    const isAllProjectsPage = archiveRoot.hasAttribute("data-all-projects");
     const manifestSource = archiveRoot.dataset.projectsSource || "./projects.json";
     const listElements = new Map(
         [...archiveRoot.querySelectorAll("[data-project-list]")]
             .map(element => [element.dataset.projectList, element])
     );
+    const filterElements = [...archiveRoot.querySelectorAll("[data-project-filter]")];
+    const clearFiltersButton = archiveRoot.querySelector("[data-clear-project-filters]");
+    const projectCount = archiveRoot.querySelector("[data-project-count]");
     const projectDateFormatter = new Intl.DateTimeFormat("en-GB", {
         day: "numeric",
         month: "short",
@@ -173,6 +177,159 @@
         return card;
     };
 
+    const TYPE_FILTER_ALIASES = {
+        "civil-engineering": ["civil-engineering", "civil"],
+        gis: ["gis", "geographic-information-systems"],
+        "cad-bim": ["cad-bim", "cad", "bim"],
+        design: ["design"],
+        personal: ["personal", "personal-project"]
+    };
+    const NAMED_TOOL_FILTERS = ["autocad", "civil-3d", "revit", "qgis", "excel", "fusion-360"];
+
+    const normaliseFilterValues = value => {
+        const values = Array.isArray(value) ? value : [value];
+        return values.filter(hasText).map(item => slugify(item)).filter(Boolean);
+    };
+
+    const valueMatchesAlias = (value, alias) => value === alias
+        || value.startsWith(`${alias}-`)
+        || value.endsWith(`-${alias}`)
+        || value.includes(`-${alias}-`);
+
+    const matchesYear = (project, selectedYear) => {
+        if (selectedYear === "all") return true;
+        const match = String(project.archive.date || "").match(/^(\d{4})/);
+        if (!match) return false;
+        const year = Number(match[1]);
+        return selectedYear === "earlier" ? year < 2025 : year === Number(selectedYear);
+    };
+
+    const matchesType = (project, selectedType) => {
+        if (selectedType === "all") return true;
+        const values = normaliseFilterValues([
+            project.projectType,
+            project.discipline,
+            ...(Array.isArray(project.tags) ? project.tags : [])
+        ]);
+        const aliases = TYPE_FILTER_ALIASES[selectedType] || [selectedType];
+        return values.some(value => aliases.some(alias => valueMatchesAlias(value, alias)));
+    };
+
+    const matchesTool = (project, selectedTool) => {
+        if (selectedTool === "all") return true;
+        const tools = normaliseFilterValues(project.tools);
+        if (selectedTool === "other") {
+            return tools.some(tool => !NAMED_TOOL_FILTERS.some(named => valueMatchesAlias(tool, named)));
+        }
+        return tools.some(tool => valueMatchesAlias(tool, selectedTool));
+    };
+
+    const matchesStatus = (project, selectedStatus) => {
+        if (selectedStatus === "all") return true;
+        const status = slugify(project.status);
+        if (selectedStatus === "completed") {
+            return ["complete", "completed", "finished"].some(value => valueMatchesAlias(status, value));
+        }
+        if (selectedStatus === "in-progress") {
+            return project.archive.currentlyWorking === true
+                || ["in-progress", "ongoing"].some(value => valueMatchesAlias(status, value));
+        }
+        return false;
+    };
+
+    const matchesFilters = (project, filters) => matchesYear(project, filters.year)
+        && matchesType(project, filters.type)
+        && matchesTool(project, filters.tool)
+        && matchesStatus(project, filters.status);
+
+    const renderFilterableProjects = projects => {
+        const element = listElements.get("filtered");
+        if (!element) return;
+
+        const cardEntries = projects.map(project => ({
+            project,
+            card: createProjectCard(project),
+            hideTimer: null
+        }));
+        const fragment = document.createDocumentFragment();
+        cardEntries.forEach(entry => fragment.append(entry.card));
+        const noMatches = createElement("p", "projects-empty all-projects-empty", "No projects match these filters.");
+        noMatches.hidden = true;
+        fragment.append(noMatches);
+        element.replaceChildren(fragment);
+        element.removeAttribute("aria-busy");
+
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const transitionDuration = reducedMotion ? 0 : 180;
+
+        const setCardVisibility = (entry, visible) => {
+            if (entry.hideTimer !== null) {
+                window.clearTimeout(entry.hideTimer);
+                entry.hideTimer = null;
+            }
+
+            if (visible) {
+                if (entry.card.hidden) {
+                    entry.card.hidden = false;
+                    entry.card.classList.add("is-filtered-out");
+                    requestAnimationFrame(() => requestAnimationFrame(() => {
+                        entry.card.classList.remove("is-filtered-out");
+                    }));
+                } else {
+                    entry.card.classList.remove("is-filtered-out");
+                }
+                entry.card.removeAttribute("aria-hidden");
+                return;
+            }
+
+            entry.card.classList.add("is-filtered-out");
+            entry.card.setAttribute("aria-hidden", "true");
+            entry.hideTimer = window.setTimeout(() => {
+                if (entry.card.classList.contains("is-filtered-out")) entry.card.hidden = true;
+                entry.hideTimer = null;
+            }, transitionDuration);
+        };
+
+        const readFilters = () => Object.fromEntries(
+            filterElements.map(filter => [filter.dataset.projectFilter, filter.value])
+        );
+
+        const applyFilters = () => {
+            const filters = {
+                year: "all",
+                type: "all",
+                tool: "all",
+                status: "all",
+                ...readFilters()
+            };
+            let visibleCount = 0;
+            cardEntries.forEach(entry => {
+                const visible = matchesFilters(entry.project, filters);
+                if (visible) visibleCount += 1;
+                setCardVisibility(entry, visible);
+            });
+
+            const filtersActive = Object.values(filters).some(value => value !== "all");
+            if (clearFiltersButton) clearFiltersButton.hidden = !filtersActive;
+            if (projectCount) projectCount.textContent = `${visibleCount} ${visibleCount === 1 ? "project" : "projects"}`;
+
+            noMatches.textContent = projects.length
+                ? "No projects match these filters."
+                : "No public projects have been published yet.";
+            noMatches.hidden = visibleCount !== 0;
+        };
+
+        filterElements.forEach(filter => filter.addEventListener("change", applyFilters));
+        clearFiltersButton?.addEventListener("click", () => {
+            filterElements.forEach(filter => {
+                filter.value = "all";
+            });
+            applyFilters();
+            filterElements[0]?.focus();
+        });
+        applyFilters();
+    };
+
     const showListMessage = (element, message, isError = false) => {
         if (!element) return;
         const paragraph = createElement("p", isError ? "projects-empty projects-error" : "projects-empty", message);
@@ -289,6 +446,18 @@
             .filter(project => String(project.archive.visibility || "private").toLowerCase() === "public")
             .sort(sortNewestFirst);
 
+        if (isAllProjectsPage) {
+            renderFilterableProjects(publicProjects);
+            document.dispatchEvent(new CustomEvent("projects:rendered", {
+                detail: {
+                    all: projects.length,
+                    public: publicProjects.length,
+                    private: projects.length - publicProjects.length
+                }
+            }));
+            return;
+        }
+
         const workingProjects = publicProjects.filter(project => {
             if (typeof project.archive.currentlyWorking === "boolean") {
                 return project.archive.currentlyWorking;
@@ -316,6 +485,7 @@
 
     const showArchiveError = error => {
         console.error(`Projects archive: failed to load ${manifestSource}.`, error);
+        if (projectCount) projectCount.textContent = "Projects unavailable";
         listElements.forEach(element => {
             showListMessage(element, "Projects could not be loaded. Check projects.json and each project folder.", true);
         });

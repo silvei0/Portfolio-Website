@@ -1,0 +1,153 @@
+{
+  "siteName": "Fiza's Project Portfolio",
+  "title": "SuDS for my local highstreet",
+  "subtitle": "Optional one-line project descriptor",
+  "description": "Explain what the project is, who it serves, and the value it creates in one clear sentence.",
+  "metaDescription": "A project case study by Fiza Mansoor.",
+  "tags": [
+    "Water Engineering",
+    "Environmental Engineering",
+    "Civil Engineering",
+    "Sustainbility",
+    "Local Project"
+  ],
+  "archive": {
+    "visibility": "public",
+    "featured": false,
+    "currentlyWorking": true,
+    "date": "???",
+    "cardDescription": "A site-based SuDS design project exploring resilient urban drainage and smart monitoring in Hounslow.",
+    "thumbnail": {
+      "placeholder": "Project preview",
+      "alt": "Placeholder for the project thumbnail",
+      "decorative": false,
+      "src": "../../assets/archive-thumbnails/Screenshot 2026-08-10 014753.png"
+    }
+  },
+  "discipline": "Water Engineering",
+  "status": "In progress",
+  "timeline": "July-August 2026",
+  "projectType": "Personal",
+  "tools": [
+    "QGiS",
+    "Excel",
+    "Revit",
+    "AutoCAD"
+  ],
+  "hero": {
+    "decorative": true
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "id": "overview",
+      "title": "Context",
+      "intro": [
+        "The idea for this project came from seeing a post in my local Hounslow community group about flooding caused by a blocked drain. While the immediate issue itself was linked to a drainage blockage, the post sparked my interest in the wider question of how surface water is managed in built-up areas and how urban drainage systems can be made more resilient. This led me to think about Sustainable Drainage Systems, or SuDS, and how they can manage rainfall closer to where it falls, reduce pressure on conventional drainage networks, and provide wider environmental benefits.",
+        "I had previously explored similar ideas while looking into flooding in Pakistan, where I used QGIS to investigate flood risk and affected areas. This gave me some experience with the analysis side of flooding, but I had never taken the next step of developing a design in response to a drainage problem.",
+        "For this project, I want to build on that experience and develop a stronger understanding of how SuDS are planned and designed. I plan to identify a suitable local site, investigate its conditions and drainage challenges, and use my findings to develop my own SuDS proposal. I also want to explore how monitoring and smart technology can be incorporated into the system as the project develops.",
+        "The original community post that inspired this project can be viewed here:"
+      ],
+      "blocks": [
+        {
+          "type": "image",
+          "alt": "Screenshot of the Facebook post",
+          "size": "medium",
+          "style": "framed",
+          "hideFromContents": false,
+          "src": "../../assets/archive-thumbnails/fb.png",
+          "decorative": false
+        },
+        {
+          "type": "links",
+          "items": [
+            {
+              "label": "Link to original Facebook post",
+              "url": "https://www.facebook.com/groups/hounslowcommunity/posts/1957626885147675/",
+              "newTab": true
+            }
+          ],
+          "hideFromContents": false
+        }
+      ],
+      "hideFromContents": false
+    },
+    {
+      "type": "section",
+      "id": "new-section",
+      "title": "Overview",
+      "blocks": [],
+      "hideFromContents": false
+    },
+    {
+      "type": "section",
+      "id": "process",
+      "title": "Process",
+      "intro": "Focus on evidence, decisions, testing, and refinement rather than listing every task.",
+      "blocks": [
+        {
+          "type": "process-step",
+          "title": "Research",
+          "content": "Explain what you needed to learn and what changed because of the findings.",
+          "show": "notes, source data, site analysis, precedents, or user needs.",
+          "image": {
+            "placeholder": "Research image",
+            "alt": "Placeholder for research evidence",
+            "caption": "Explain the evidence shown here."
+          }
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "outcome",
+      "title": "Outcome and impact",
+      "navTitle": "Outcome",
+      "intro": "Connect the finished work back to the original goals and support the result with evidence.",
+      "blocks": [
+        {
+          "type": "image",
+          "placeholder": "Final outcome image",
+          "alt": "Placeholder for the final project outcome",
+          "caption": "Describe the final work and its most important feature.",
+          "size": "wide",
+          "style": "framed"
+        },
+        {
+          "type": "text",
+          "content": "State the result, its impact, the evidence of success, and any honest limitations."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "reflection",
+      "title": "Reflection",
+      "blocks": [
+        {
+          "type": "callout",
+          "variant": "subtle",
+          "title": "What I learned",
+          "content": "End with a specific lesson and the next improvement you would make."
+        }
+      ]
+    }
+  ],
+  "archiveUrl": "../",
+  "archiveLabel": "Project archive",
+  "archiveLinkText": "← All projects",
+  "contactUrl": "../../contact-me/",
+  "contactLabel": "Have a project in mind?",
+  "contactLinkText": "Get in touch →",
+  "backLinkText": "← Back to all projects",
+  "externalLinks": [
+    {
+      "label": "Notion Project Timeline",
+      "hint": "View how I planned out this project with Notion",
+      "url": "https://fiza-mansoor.notion.site/Smart-Sustainable-Urban-Drainage-System-SuDS-Design-Plan-39e59cd13a0780b98c75f8c3db56936f",
+      "icon": "../../assets/logos/notion.svg",
+      "newTab": true,
+      "style": "primary"
+    }
+  ]
+}

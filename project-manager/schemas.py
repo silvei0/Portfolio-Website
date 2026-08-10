@@ -296,12 +296,24 @@ TOP_LEVEL_TABS: dict[str, list[dict[str, Any]]] = {
         field("description", "Project summary", "paragraphs"),
         field("metaDescription", "Search description", "text"),
         field("tags", "Tags", "string_list", help_text="One tag per line; the website displays up to eight."),
-        field("discipline", "Discipline"),
-        field("status", "Status"),
+        field("discipline", "Discipline", help_text="Also helps classify the project on the All Projects page."),
+        field("status", "Status", help_text="Use Completed or In Progress to include the project in those status filters."),
         field("timeline", "Timeline"),
-        field("projectType", "Project type"),
+        field(
+            "projectType",
+            "Project type",
+            help_text="For filtering, use Civil Engineering, GIS, CAD / BIM, Design, or Personal.",
+        ),
         field("role", "Your role"),
-        field("tools", "Tools", "string_list", help_text="One tool per line."),
+        field(
+            "tools",
+            "Tools",
+            "string_list",
+            help_text=(
+                "One tool per line. AutoCAD, Civil 3D, Revit, QGIS, Excel, and Fusion 360 "
+                "have named filters; other entries appear under Other."
+            ),
+        ),
     ],
     "Archive": [
         field("archive.visibility", "Archive visibility", "choice", choices=("private", "public"), default="private"),
@@ -311,7 +323,32 @@ TOP_LEVEL_TABS: dict[str, list[dict[str, Any]]] = {
         field("archive.cardDescription", "Archive-card summary", "text"),
         *prefixed_fields("archive.thumbnail", GALLERY_IMAGE_FIELDS),
     ],
-    "Hero": prefixed_fields("hero", GALLERY_IMAGE_FIELDS),
+    "Hero": [
+        *prefixed_fields("hero", GALLERY_IMAGE_FIELDS),
+        field(
+            "externalLinks",
+            "Hero buttons / links",
+            "record_list",
+            help_text=(
+                "Buttons shown beneath the project summary at the top of the page. "
+                "Use these for a Notion page, live demo, GitHub repository, report, or similar link."
+            ),
+            fields=[
+                field("label", "Button label", help_text="For example: View Notion page"),
+                field("hint", "Small supporting text (optional)"),
+                field("url", "Destination URL or path", help_text="Paste the full https:// link for an external page."),
+                field("icon", "Icon (optional)", "path", media_dir="images"),
+                field(
+                    "style",
+                    "Button style",
+                    "choice",
+                    choices=("", "primary"),
+                    help_text="Choose primary for the more prominent filled button.",
+                ),
+                field("newTab", "Open in new tab", "bool", default=True),
+            ],
+        ),
+    ],
     "Navigation": [
         field("archiveUrl", "Archive URL", default="../"),
         field("archiveLabel", "Archive label", default="Project archive"),
@@ -321,7 +358,7 @@ TOP_LEVEL_TABS: dict[str, list[dict[str, Any]]] = {
         field("contactLinkText", "Contact link text", default="Get in touch →"),
         field("backLinkText", "Back-link text", default="← Back to all projects"),
     ],
-    "Metadata & links": [
+    "Metadata": [
         field(
             "customMetadata",
             "Custom metadata",
@@ -333,19 +370,6 @@ TOP_LEVEL_TABS: dict[str, list[dict[str, Any]]] = {
             "Ordered metadata",
             "record_list",
             fields=[field("label", "Label"), field("value", "Value")],
-        ),
-        field(
-            "externalLinks",
-            "Hero links",
-            "record_list",
-            fields=[
-                field("label", "Label"),
-                field("hint", "Hint"),
-                field("url", "URL or path"),
-                field("icon", "Icon", "path", media_dir="images"),
-                field("style", "Style", "choice", choices=("", "primary")),
-                field("newTab", "Open in new tab", "bool", default=True),
-            ],
         ),
     ],
 }

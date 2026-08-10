@@ -2,18 +2,20 @@
 
 from __future__ import annotations
 
+import socket
 import tempfile
 import subprocess
 import sys
 from pathlib import Path
+from urllib.request import urlopen
 
 REPOSITORY_DIR = Path(__file__).resolve().parent.parent
 if str(REPOSITORY_DIR) not in sys.path:
     sys.path.insert(0, str(REPOSITORY_DIR))
 
 from manager_auth import PasswordStore, validate_new_password
-from schemas import BLOCK_SCHEMAS
-from services import GitPublisher, ProjectRepository, atomic_write_json, validate_manifest, validate_project
+from schemas import BLOCK_SCHEMAS, TOP_LEVEL_TABS
+from services import GitPublisher, PreviewServer, ProjectRepository, atomic_write_json, validate_manifest, validate_project
 
 
 def all_block_project(project_dir: Path) -> dict:
@@ -79,6 +81,13 @@ def all_block_project(project_dir: Path) -> dict:
 
 def test_schema_and_validation() -> None:
     assert len(BLOCK_SCHEMAS) == 22
+    hero_paths = [field["path"] for field in TOP_LEVEL_TABS["Hero"]]
+    assert "externalLinks" in hero_paths
+    assert sum(
+        field["path"] == "externalLinks"
+        for fields in TOP_LEVEL_TABS.values()
+        for field in fields
+    ) == 1
     with tempfile.TemporaryDirectory() as temporary:
         project_dir = Path(temporary) / "project"
         project = all_block_project(project_dir)
@@ -202,14 +211,39 @@ def test_local_password_store() -> None:
         assert second_password not in auth_path.read_text(encoding="utf-8")
 
 
+def test_preview_server_disables_caching() -> None:
+    with tempfile.TemporaryDirectory() as temporary:
+        root = Path(temporary)
+        project_dir = root / "projects" / "demo"
+        project_dir.mkdir(parents=True)
+        (project_dir / "index.html").write_text("<!doctype html><title>Preview</title>", encoding="utf-8")
+
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as available_port:
+            available_port.bind(("127.0.0.1", 0))
+            port = available_port.getsockname()[1]
+
+        preview = PreviewServer(root, port, auto_open=False)
+        try:
+            first_url = preview.open_project("demo")
+            second_url = preview.open_project("demo")
+            assert first_url != second_url
+            assert "?preview=" in first_url
+            with urlopen(second_url, timeout=3) as response:
+                assert response.status == 200
+                assert response.headers["Cache-Control"] == "no-store, no-cache, must-revalidate, max-age=0"
+        finally:
+            preview.stop()
+
+
 def main() -> None:
     test_schema_and_validation()
     test_repository_workflow()
     test_scoped_git_publish()
     test_local_password_store()
+    test_preview_server_disables_caching()
     print(
         "Project Manager tests passed: password hashing, schemas, all blocks, validation, "
-        "repository workflow, scoped commit, and local push."
+        "repository workflow, no-cache preview, scoped commit, and local push."
     )
 
 

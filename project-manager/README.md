@@ -168,8 +168,17 @@ Other unrelated working-tree changes are not included in the project commit.
 ### Basics
 
 Controls the project title, subtitle, summary, search description, tags,
-discipline, status, timeline, project type, role, and tools. Use one line per
-tag or tool. The website displays a maximum of eight unique tags.
+discipline, status, timeline, project type, role, and tools. The same data
+drives the filters on the **All Projects** page:
+
+- **Year** comes from the publication date in the Archive tab.
+- **Project Type** uses project type, discipline, and matching tags.
+- **Software / Tools** uses the Tools list; enter one tool per line.
+- **Status** uses Completed or In Progress (and the Currently Working setting).
+
+The website displays a maximum of eight unique tags. Publishing a public
+project through the manager adds it to the existing manifest, so both project
+pages update without copying card content.
 
 ### Archive
 
@@ -188,18 +197,21 @@ material to a public GitHub Pages repository.
 
 Supports a real image or intentional placeholder, alternative text, caption,
 placeholder guidance, decorative-image mode, eager/lazy loading, and intrinsic
-dimensions.
+dimensions. The **Hero buttons / links** control at the bottom of this tab adds
+buttons directly beneath the project summary. Choose **Manage...**, add a label
+and destination URL, then optionally add supporting text, an icon, the primary
+button style, or new-tab behaviour. This is the control to use for a Notion
+page, live demo, GitHub repository, report, or similar project link.
 
 ### Navigation
 
 Allows every project-specific pagination URL, label, link caption, and back-link
 wording to be changed. The supplied defaults match the current project folders.
 
-### Metadata & links
+### Metadata
 
 - **Custom metadata** creates label/value details without fixed ordering.
 - **Ordered metadata** preserves the exact order of label/value rows.
-- **Hero links** support label, hint, URL, icon, primary style, and new-tab mode.
 
 ## 7. Every supported content block
 

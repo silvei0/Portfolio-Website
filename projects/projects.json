@@ -1,4 +1,13 @@
 {
-  "projects": [],
-  "updates": []
+  "projects": [
+    "introducing-myself-to-matlab",
+    "suds-for-my-local-highstreet"
+  ],
+  "updates": [
+    {
+      "date": "2026-08-09",
+      "content": "Starting a new project - \"Introducing myself to MATLAB\"",
+      "visibility": "public"
+    }
+  ]
 }

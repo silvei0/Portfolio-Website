@@ -9,6 +9,7 @@ import shutil
 import socket
 import subprocess
 import sys
+import time
 import webbrowser
 from dataclasses import dataclass
 from datetime import date
@@ -624,23 +625,41 @@ class PreviewServer:
             return
         flags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
         self.process = subprocess.Popen(
-            [sys.executable, "-m", "http.server", str(self.port), "--bind", "127.0.0.1"],
+            [sys.executable, str(APP_DIR / "preview_server.py"), str(self.port), str(self.repository)],
             cwd=self.repository,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             creationflags=flags,
         )
+        for _attempt in range(20):
+            if self._port_open():
+                return
+            if self.process.poll() is not None:
+                raise OSError("The local preview server could not be started.")
+            time.sleep(0.05)
+        self.stop()
+        raise OSError("The local preview server did not become ready in time.")
+
+    def stop(self) -> None:
+        if self.process is None or self.process.poll() is not None:
+            return
+        self.process.terminate()
+        try:
+            self.process.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            self.process.kill()
+            self.process.wait(timeout=2)
 
     def open_project(self, slug: str) -> str:
         self.ensure_running()
-        url = f"http://127.0.0.1:{self.port}/projects/{slug}/"
+        url = f"http://127.0.0.1:{self.port}/projects/{slug}/?preview={time.time_ns()}"
         if self.auto_open:
             webbrowser.open(url)
         return url
 
     def open_archive(self) -> str:
         self.ensure_running()
-        url = f"http://127.0.0.1:{self.port}/projects/"
+        url = f"http://127.0.0.1:{self.port}/projects/?preview={time.time_ns()}"
         if self.auto_open:
             webbrowser.open(url)
         return url

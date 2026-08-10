@@ -473,8 +473,18 @@ class BlockTypeDialog(tk.Toplevel):
 
         outer = ttk.Frame(self, padding=16, style="App.TFrame")
         outer.pack(fill="both", expand=True)
-        self.listbox = tk.Listbox(outer, font=("Segoe UI", 10), activestyle="none")
-        self.listbox.pack(fill="both", expand=True)
+        ttk.Label(
+            outer,
+            text="Choose a block type. Scroll to see every option, including Margin notes.",
+            style="AppHelp.TLabel",
+        ).pack(anchor="w", pady=(0, 8))
+        list_frame = ttk.Frame(outer, style="App.TFrame")
+        list_frame.pack(fill="both", expand=True)
+        self.listbox = tk.Listbox(list_frame, font=("Segoe UI", 10), activestyle="none")
+        scrollbar = ttk.Scrollbar(list_frame, orient="vertical", command=self.listbox.yview)
+        self.listbox.configure(yscrollcommand=scrollbar.set)
+        self.listbox.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
         for block_type in self.types:
             schema = BLOCK_SCHEMAS[block_type]
             self.listbox.insert("end", f"{schema['label']} — {schema['description']}")
@@ -1435,6 +1445,7 @@ class ProjectManager(tk.Tk):
     def _close(self) -> None:
         if not self._confirm_discard_or_save():
             return
+        self.preview.stop()
         self.destroy()
 
 

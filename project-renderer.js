@@ -468,6 +468,16 @@
                     element.classList.add("paper-panel", "project-section", "project-generated-section", "project-standalone-block");
                     if (!element.id) element.id = safeClassToken(block.id) || slugify(block.navTitle || block.title || `${block.type}-${index + 1}`);
                 }
+                if (!context.nested && block.type === "margin-notes") {
+                    element.classList.add("project-margin-notes--top-level");
+                    const previous = parent.lastElementChild;
+                    if (previous?.classList.contains("project-section")) {
+                        const row = createElement("div", "project-section-with-margin-notes");
+                        parent.replaceChild(row, previous);
+                        row.append(previous, element);
+                        return;
+                    }
+                }
                 parent.append(element);
             } catch (error) {
                 console.error(`Project renderer: block ${index + 1} could not be rendered.`, block, error);

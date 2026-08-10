@@ -1,0 +1,154 @@
+{
+  "siteName": "Fiza's Project Portfolio",
+  "title": "Introducing myself to MATLAB",
+  "subtitle": "MATLAB is used for numerical analysis, modelling and engineering calculations. I plan to learn its fundamentals through an edX MOOC and apply them to some practical engineering problems.",
+  "description": [
+    "I am developing my MATLAB skills through the MathWorks MATLAB Essentials MOOC on edX. The course introduces MATLAB as a programming and numerical computing platform for analysing data, developing algorithms and creating computational models.",
+    "Throughout the project, I will develop practical skills in importing and processing datasets, programming, data analysis and creating 2D, 3D, geographic and time-series visualisations. I will also explore animations and methods for presenting and communicating computational results.",
+    "My aim is to build a foundation in MATLAB that I can later apply to civil engineering problems involving numerical analysis, modelling, engineering data and simulation."
+  ],
+  "tags": [
+    "MATLAB",
+    "Numerical Analysis",
+    "Engineering Computation",
+    "Data Analysis",
+    "Modelling"
+  ],
+  "archive": {
+    "visibility": "public",
+    "featured": false,
+    "currentlyWorking": true,
+    "date": "2026-08-09",
+    "cardDescription": "Learning MATLAB for engineering analysis and numerical modelling through an edX MOOC.",
+    "thumbnail": {
+      "placeholder": "Project preview",
+      "alt": "Placeholder for the project thumbnail",
+      "decorative": false,
+      "src": "../../assets/archive-thumbnails/MATLAB-Symbol.jpg"
+    }
+  },
+  "status": "In progress",
+  "timeline": "August 2026",
+  "projectType": "MATLAB",
+  "tools": [
+    "MATLAB",
+    "edX"
+  ],
+  "hero": {
+    "alt": "MATLAB-mainimg",
+    "decorative": false,
+    "src": "../../assets/archive-thumbnails/matlab-software-6645ec264b10d5a6894b5fd6.webp"
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "id": "overview",
+      "title": "Overview",
+      "intro": [
+        "As civil engineering problems become more complex, computational methods help me analyse data, model systems and test scenarios efficiently. While I will use industry tools for data handling and modelling, I am particularly drawn to MATLAB for its flexibility and its ability to integrate these skills in one environment.",
+        "Before starting the course, I wanted to understand what I was actually learning. MATLAB is much more than a calculator or a place to write code. It is a numerical computing environment built specifically for engineers and scientists, combining programming, mathematical computation, data analysis, visualisation and modelling within one environment. It can also be extended through specialised engineering toolboxes and used alongside Simulink for simulation.",
+        "MATLAB can range from performing a few matrix calculations to developing algorithms, analysing large datasets and building mathematical models. Its specialised toolboxes extend this further into areas such as optimisation, statistics, signal processing and other engineering applications. MATLAB can also interact with Python, C/C++ and Java.",
+        "This makes the software seem quite demanding at first. There is a programming language to learn alongside an environment containing functions, plotting tools, apps and specialised toolboxes. Yet MATLAB is a high-level language designed around technical computing, meaning many mathematical operations that would require more implementation in a general-purpose language are already available as functions.",
+        "Is MATLAB difficult to learn? This was one of my main questions before starting. Beginner experiences on Reddit were more reassuring than I expected.\nOne user described MATLAB as “fairly easy to learn and gain confidence” when discussing whether it was suitable as a first programming language. Another said MATLAB was “not too hard to self-learn.”",
+        "The difficulty appears to come less from entering basic commands and more from progressing towards solving meaningful engineering problems. One experienced user made an interesting distinction: “Matlab is a tool.” Their advice was to choose an application and use MATLAB to solve problems within mathematics, science or engineering rather than trying to learn every feature of the software."
+      ],
+      "blocks": [],
+      "hideFromContents": false
+    },
+    {
+      "type": "section",
+      "id": "process",
+      "title": "Process",
+      "intro": "Focus on evidence, decisions, testing, and refinement rather than listing every task.",
+      "blocks": [
+        {
+          "type": "process-step",
+          "title": "Research",
+          "content": "Explain what you needed to learn and what changed because of the findings.",
+          "show": "notes, source data, site analysis, precedents, or user needs.",
+          "image": {
+            "placeholder": "Research image",
+            "alt": "Placeholder for research evidence",
+            "caption": "Explain the evidence shown here."
+          }
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "id": "week-1",
+      "title": "First Steps with Numeric Data",
+      "blocks": [
+        {
+          "type": "divider",
+          "hideFromContents": false
+        },
+        {
+          "type": "text",
+          "hideFromContents": false,
+          "ordered": false
+        }
+      ],
+      "hideFromContents": false
+    },
+    {
+      "type": "section",
+      "id": "week-2",
+      "title": "Week 2",
+      "blocks": [],
+      "hideFromContents": false
+    },
+    {
+      "type": "section",
+      "id": "week-3",
+      "title": "Week 3",
+      "blocks": [],
+      "hideFromContents": false
+    },
+    {
+      "type": "section",
+      "id": "week-4",
+      "title": "Week 4",
+      "blocks": [],
+      "hideFromContents": false
+    },
+    {
+      "type": "section",
+      "id": "reflection",
+      "title": "Reflection",
+      "blocks": [
+        {
+          "type": "callout",
+          "variant": "subtle",
+          "title": "What I learned",
+          "content": "End with a specific lesson and the next improvement you would make."
+        }
+      ]
+    }
+  ],
+  "archiveUrl": "../",
+  "archiveLabel": "Project archive",
+  "archiveLinkText": "← All projects",
+  "contactUrl": "../../contact-me/",
+  "contactLabel": "Have a project in mind?",
+  "contactLinkText": "Get in touch →",
+  "backLinkText": "← Back to all projects",
+  "externalLinks": [
+    {
+      "label": "MATLAB Essentials Course",
+      "hint": "The course I used to guide this project.",
+      "url": "https://www.edx.org/learn/matlab/mathworks-matlab-essentials?index=rv_product_summary&queryId=5a8a47dbd8caead994bd4331e34d0bab&position=6",
+      "icon": "../../assets/logos/edx.svg",
+      "style": "primary",
+      "newTab": true
+    },
+    {
+      "label": "Notion Project Timeline",
+      "hint": "View how I planned out this project with Notion.",
+      "url": "https://fiza-mansoor.notion.site/MATLAB-Essentials-Course-3b759cd13a078058bfa9fc813a1fe141?source=copy_link",
+      "icon": "../../assets/logos/notion.svg",
+      "style": "primary",
+      "newTab": true
+    }
+  ]
+}
