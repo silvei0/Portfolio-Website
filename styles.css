@@ -3302,6 +3302,17 @@ a.post-card:hover {
     width: 100%;
 }
 
+.gap-year-sticker {
+    position: absolute;
+    right: calc(100% - 153px);
+    bottom: calc(9% - 20px);
+    z-index: 2;
+    width: clamp(151px, 17.2vw, 244px);
+    height: auto;
+    filter: drop-shadow(0 10px 10px rgb(48 39 30 / 16%));
+    transform: rotate(-9deg);
+}
+
 .thought-bubble {
     position: absolute;
     top: -280px;
@@ -3581,6 +3592,12 @@ body > header nav,
 
     .home-page .home-visual > a {
         display: block;
+    }
+
+    .home-page .gap-year-sticker {
+        right: calc(100% - clamp(151px, calc(5vw + 135px), 169px));
+        bottom: calc(12% - 20px);
+        width: clamp(118px, 27.2vw, 187px);
     }
 
     .home-page .thought-bubble {
