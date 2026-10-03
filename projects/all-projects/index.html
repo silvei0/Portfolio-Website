@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../styles.css">
     <script src="../../supabase-config.js" defer></script>
     <script src="../../traffic.js" defer></script>
-    <script src="../../projects.js" defer></script>
+    <script src="../../projects.js?v=all-grid-placeholders-3" defer></script>
 </head>
 <body class="projects-page all-projects-page">
     <header>
@@ -21,34 +21,22 @@
         </nav>
     </header>
     <main id="main-content">
-        <a class="project-back-link all-projects-back-link" href="../">&larr; Project archive</a>
+        <a class="project-back-link all-projects-back-link" href="../">&larr; Projects page</a>
 
         <section
             class="all-projects-archive"
             data-project-archive
             data-all-projects
             data-projects-source="../projects.json"
-        >
-            <header class="paper-panel all-projects-intro">
-                <span class="paper-tape" aria-hidden="true"></span>
+            >
+            <section class="paper-panel all-projects-intro project-filters" aria-label="Project filters">
                 <h1>All Projects</h1>
-                <p>Welcome to my project archive! Browse all my documented projects here, and use the filters to quickly find work by year, project type, software or status.</p>
-            </header>
-
-            <section class="paper-panel project-filters" aria-labelledby="project-filters-title">
-                <div class="project-filters-heading">
-                    <div>
-                        <h2 id="project-filters-title">Filter projects</h2>
-                        <p>Combine filters to narrow down the archive.</p>
-                    </div>
-                    <button class="project-filters-clear" type="button" data-clear-project-filters hidden>Clear filters</button>
-                </div>
-
                 <div class="project-filter-controls">
                     <label class="project-filter-field">
                         <span>Year</span>
                         <select data-project-filter="year">
                             <option value="all">All</option>
+                            <option value="2027">2027</option>
                             <option value="2026">2026</option>
                             <option value="2025">2025</option>
                             <option value="earlier">Earlier</option>
@@ -68,14 +56,49 @@
                     </label>
 
                     <label class="project-filter-field">
+                        <span>Civil Engineering Discipline</span>
+                        <select data-project-filter="discipline">
+                            <option value="all">All</option>
+                            <option value="structural-engineering">Structural Engineering</option>
+                            <option value="geotechnical-engineering">Geotechnical Engineering</option>
+                            <option value="transportation-engineering">Transportation Engineering</option>
+                            <option value="highways-engineering">Highways Engineering</option>
+                            <option value="water-engineering">Water Engineering</option>
+                            <option value="water-resources">Water Resources</option>
+                            <option value="urban-drainage-suds">Urban Drainage / SuDS</option>
+                            <option value="environmental-engineering">Environmental Engineering</option>
+                            <option value="construction-management">Construction Management</option>
+                            <option value="surveying-geomatics">Surveying / Geomatics</option>
+                            <option value="coastal-maritime-engineering">Coastal / Maritime Engineering</option>
+                            <option value="bim-coordination">BIM Coordination</option>
+                            <option value="numerical-modelling">Numerical Modelling</option>
+                        </select>
+                    </label>
+
+                    <label class="project-filter-field">
                         <span>Software / Tools</span>
                         <select data-project-filter="tool">
                             <option value="all">All</option>
                             <option value="autocad">AutoCAD</option>
                             <option value="civil-3d">Civil 3D</option>
                             <option value="revit">Revit</option>
+                            <option value="navisworks">Navisworks</option>
+                            <option value="microstation">MicroStation</option>
+                            <option value="openroads">OpenRoads</option>
+                            <option value="tekla-structures">Tekla Structures</option>
+                            <option value="robot-structural-analysis">Robot Structural Analysis</option>
+                            <option value="sap2000">SAP2000</option>
+                            <option value="etabs">ETABS</option>
+                            <option value="plaxis">PLAXIS</option>
+                            <option value="hec-ras">HEC-RAS</option>
+                            <option value="infodrainage">InfoDrainage</option>
                             <option value="qgis">QGIS</option>
+                            <option value="arcgis">ArcGIS</option>
                             <option value="excel">Excel</option>
+                            <option value="matlab">MATLAB</option>
+                            <option value="python">Python</option>
+                            <option value="ms-project">Microsoft Project</option>
+                            <option value="bluebeam-revu">Bluebeam Revu</option>
                             <option value="fusion-360">Fusion 360</option>
                             <option value="other">Other</option>
                         </select>
@@ -91,7 +114,7 @@
                     </label>
                 </div>
 
-                <p class="project-filter-count" data-project-count aria-live="polite">Loading projects&hellip;</p>
+                <button class="project-filters-clear" type="button" data-clear-project-filters hidden>Clear filters</button>
             </section>
 
             <section class="paper-panel all-projects-results" aria-labelledby="all-projects-results-title">

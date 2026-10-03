@@ -602,7 +602,6 @@
         if (!items.length) return null;
         const aside = createElement("aside", "project-contents paper-panel");
         aside.setAttribute("aria-label", "On this page");
-        aside.append(createElement("p", "", "On this page"));
         const list = createElement("ol");
         items.forEach(item => {
             const link = createElement("a", "", item.title);
@@ -621,13 +620,11 @@
 
         const archive = createElement("a");
         archive.href = project.archiveUrl || "../";
-        archive.append(createElement("span", "", project.archiveLabel || "Project archive"));
         archive.append(createElement("strong", "", project.archiveLinkText || "← All projects"));
 
         const contact = createElement("a");
         contact.href = project.contactUrl || "../../contact-me/";
-        contact.append(createElement("span", "", project.contactLabel || "Have a project in mind?"));
-        contact.append(createElement("strong", "", project.contactLinkText || "Get in touch →"));
+        contact.append(createElement("strong", "", project.contactLinkText || "Contact me →"));
 
         navigation.append(archive, contact);
         return navigation;

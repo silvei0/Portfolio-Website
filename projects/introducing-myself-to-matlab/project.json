@@ -24,7 +24,7 @@
       "placeholder": "Project preview",
       "alt": "Placeholder for the project thumbnail",
       "decorative": false,
-      "src": "../../assets/archive-thumbnails/MATLAB-Symbol.jpg"
+      "src": "../../assets/archive-thumbnails/matlab-software-6645ec264b10d5a6894b5fd6.webp"
     }
   },
   "status": "In progress",
@@ -131,7 +131,7 @@
   "archiveLinkText": "← All projects",
   "contactUrl": "../../contact-me/",
   "contactLabel": "Have a project in mind?",
-  "contactLinkText": "Get in touch →",
+  "contactLinkText": "Contact me →",
   "backLinkText": "← Back to all projects",
   "externalLinks": [
     {

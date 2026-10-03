@@ -34,6 +34,7 @@
     const filterElements = [...archiveRoot.querySelectorAll("[data-project-filter]")];
     const clearFiltersButton = archiveRoot.querySelector("[data-clear-project-filters]");
     const projectCount = archiveRoot.querySelector("[data-project-count]");
+    const recentFeed = archiveRoot.querySelector("[data-recent-feed]");
     const projectDateFormatter = new Intl.DateTimeFormat("en-GB", {
         day: "numeric",
         month: "short",
@@ -122,9 +123,15 @@
     const appendThumbnail = (card, project) => {
         const thumbnail = project.archive?.thumbnail || project.hero || {};
         const source = resolveMediaUrl(thumbnail.src, project.jsonUrl);
+        const placeholder = createElement(
+            "div",
+            "post-thumbnail project-card-placeholder",
+            "No image available"
+        );
 
         if (source) {
             const image = createElement("img", "post-thumbnail project-card-thumbnail");
+            image.addEventListener("error", () => image.replaceWith(placeholder), { once: true });
             image.src = source;
             image.alt = thumbnail.decorative === true
                 ? ""
@@ -137,13 +144,6 @@
             return;
         }
 
-        const placeholder = createElement(
-            "div",
-            "post-thumbnail project-card-placeholder",
-            thumbnail.placeholder || "Project preview"
-        );
-        placeholder.setAttribute("role", "img");
-        placeholder.setAttribute("aria-label", thumbnail.alt || `${project.title} project preview`);
         card.append(placeholder);
     };
 
@@ -156,6 +156,14 @@
 
         const description = getDescription(project);
         if (description) card.append(createElement("p", "project-card-description", description));
+
+        const projectType = hasText(project.discipline) ? project.discipline : project.projectType;
+        const tools = Array.isArray(project.tools) ? project.tools.filter(hasText) : [];
+        const secondaryTools = tools.filter(tool => String(tool).toLowerCase() !== String(projectType || "").toLowerCase());
+        const facts = [projectType, project.timeline, secondaryTools.slice(0, 2).join(" / ")]
+            .filter(hasText)
+            .map(value => String(value).trim());
+        if (facts.length) card.append(createElement("p", "project-card-facts", facts.join(" · ")));
 
         const tags = renderTags(project.tags, "project-card-tags");
         if (tags) card.append(tags);
@@ -177,14 +185,49 @@
         return card;
     };
 
+    const createProjectPlaceholder = () => {
+        const card = createElement("article", "post-card project-card project-card--placeholder");
+        const thumbnail = createElement("div", "post-thumbnail project-card-placeholder");
+        const copy = createElement("div", "project-card-placeholder-copy");
+        copy.append(
+            createElement("span", "project-card-placeholder-line project-card-placeholder-line--title"),
+            createElement("span", "project-card-placeholder-line"),
+            createElement("span", "project-card-placeholder-line"),
+            createElement("span", "project-card-placeholder-line")
+        );
+        thumbnail.setAttribute("aria-hidden", "true");
+        copy.setAttribute("aria-hidden", "true");
+        card.setAttribute("aria-label", "Project placeholder");
+        card.append(thumbnail, copy);
+        return card;
+    };
+
     const TYPE_FILTER_ALIASES = {
         "civil-engineering": ["civil-engineering", "civil"],
+        "structural-engineering": ["structural-engineering", "structural"],
+        "geotechnical-engineering": ["geotechnical-engineering", "geotechnical", "geotech"],
+        "transportation-engineering": ["transportation-engineering", "transportation", "transport"],
+        "highways-engineering": ["highways-engineering", "highway", "roads"],
+        "water-engineering": ["water-engineering", "water"],
+        "water-resources": ["water-resources", "hydrology", "hydraulics"],
+        "urban-drainage-suds": ["urban-drainage", "suds", "sustainable-drainage", "drainage"],
+        "environmental-engineering": ["environmental-engineering", "environmental"],
+        "construction-management": ["construction-management", "construction", "project-management"],
+        "surveying-geomatics": ["surveying", "geomatics", "geospatial"],
+        "coastal-maritime-engineering": ["coastal-engineering", "maritime-engineering", "coastal", "maritime"],
+        "bim-coordination": ["bim-coordination", "bim"],
+        "numerical-modelling": ["numerical-modelling", "numerical-analysis", "modelling", "modeling"],
         gis: ["gis", "geographic-information-systems"],
         "cad-bim": ["cad-bim", "cad", "bim"],
         design: ["design"],
         personal: ["personal", "personal-project"]
     };
-    const NAMED_TOOL_FILTERS = ["autocad", "civil-3d", "revit", "qgis", "excel", "fusion-360"];
+    const TOOL_FILTER_ALIASES = {
+        "hec-ras": ["hec-ras", "hecras"],
+        "ms-project": ["ms-project", "microsoft-project"],
+        "bluebeam-revu": ["bluebeam-revu", "bluebeam"]
+    };
+    const NAMED_TOOL_FILTERS = ["autocad", "civil-3d", "revit", "navisworks", "microstation", "openroads", "tekla-structures", "robot-structural-analysis", "sap2000", "etabs", "plaxis", "hec-ras", "hecras", "infodrainage", "qgis", "arcgis", "excel", "matlab", "python", "ms-project", "microsoft-project", "bluebeam-revu", "bluebeam", "fusion-360"];
 
     const normaliseFilterValues = value => {
         const values = Array.isArray(value) ? value : [value];
@@ -221,7 +264,8 @@
         if (selectedTool === "other") {
             return tools.some(tool => !NAMED_TOOL_FILTERS.some(named => valueMatchesAlias(tool, named)));
         }
-        return tools.some(tool => valueMatchesAlias(tool, selectedTool));
+        const aliases = TOOL_FILTER_ALIASES[selectedTool] || [selectedTool];
+        return tools.some(tool => aliases.some(alias => valueMatchesAlias(tool, alias)));
     };
 
     const matchesStatus = (project, selectedStatus) => {
@@ -239,6 +283,7 @@
 
     const matchesFilters = (project, filters) => matchesYear(project, filters.year)
         && matchesType(project, filters.type)
+        && matchesType(project, filters.discipline)
         && matchesTool(project, filters.tool)
         && matchesStatus(project, filters.status);
 
@@ -258,6 +303,21 @@
         fragment.append(noMatches);
         element.replaceChildren(fragment);
         element.removeAttribute("aria-busy");
+
+        let visibleProjectCount = projects.length;
+
+        const syncGridPlaceholders = count => {
+            element.querySelectorAll(".project-card--grid-placeholder").forEach(card => card.remove());
+            if (count === 0) return;
+
+            const columns = getComputedStyle(element).gridTemplateColumns.split(" ").length;
+            const placeholderCount = (columns - (count % columns)) % columns;
+            for (let index = 0; index < placeholderCount; index += 1) {
+                const placeholder = createProjectPlaceholder();
+                placeholder.classList.add("project-card--grid-placeholder");
+                element.insertBefore(placeholder, noMatches);
+            }
+        };
 
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const transitionDuration = reducedMotion ? 0 : 180;
@@ -298,6 +358,7 @@
             const filters = {
                 year: "all",
                 type: "all",
+                discipline: "all",
                 tool: "all",
                 status: "all",
                 ...readFilters()
@@ -313,6 +374,9 @@
             if (clearFiltersButton) clearFiltersButton.hidden = !filtersActive;
             if (projectCount) projectCount.textContent = `${visibleCount} ${visibleCount === 1 ? "project" : "projects"}`;
 
+            visibleProjectCount = visibleCount;
+            syncGridPlaceholders(visibleProjectCount);
+
             noMatches.textContent = projects.length
                 ? "No projects match these filters."
                 : "No public projects have been published yet.";
@@ -327,6 +391,7 @@
             applyFilters();
             filterElements[0]?.focus();
         });
+        window.addEventListener("resize", () => syncGridPlaceholders(visibleProjectCount), { passive: true });
         applyFilters();
     };
 
@@ -337,16 +402,20 @@
         element.removeAttribute("aria-busy");
     };
 
-    const renderCards = (name, projects, emptyMessage) => {
+    const renderCards = (name, projects, emptyMessage, slotCount = 0) => {
         const element = listElements.get(name);
         if (!element) return;
-        if (!projects.length) {
+        if (!projects.length && slotCount === 0) {
             showListMessage(element, emptyMessage);
             return;
         }
 
         const fragment = document.createDocumentFragment();
         projects.forEach(project => fragment.append(createProjectCard(project)));
+        const placeholderCount = Math.max(0, slotCount - projects.length);
+        for (let index = 0; index < placeholderCount; index += 1) {
+            fragment.append(createProjectPlaceholder());
+        }
         element.replaceChildren(fragment);
         element.removeAttribute("aria-busy");
     };
@@ -465,13 +534,14 @@
             return String(project.status || "").trim().toLowerCase() === "in progress";
         });
         const featuredProjects = publicProjects.filter(project => project.archive.featured === true);
-        const recentProjects = publicProjects.slice(0, 3);
+        const recentProjects = publicProjects.slice(0, 6);
         const updates = prepareUpdates(updateEntries, publicProjects);
 
         renderUpdates(updates);
-        renderCards("working", workingProjects, "No public projects are currently marked as in progress.");
-        renderCards("recent", recentProjects, "No public projects have been published yet.");
-        renderCards("featured", featuredProjects, "No public projects are featured yet.");
+        renderCards("working", workingProjects, "No public projects are currently marked as in progress.", 3);
+        if (recentFeed) recentFeed.hidden = false;
+        renderCards("recent", recentProjects, "No public projects have been published yet.", 6);
+        renderCards("featured", featuredProjects, "No public projects are featured yet.", 2);
         renderCards("all", publicProjects, "No public projects have been published yet.");
 
         document.dispatchEvent(new CustomEvent("projects:rendered", {

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../styles.css">
     <script src="../supabase-config.js" defer></script>
     <script src="../traffic.js" defer></script>
-    <script src="../projects.js" defer></script>
+    <script src="../projects.js?v=compact-overview-9" defer></script>
 </head>
 <body class="projects-page">
     <header>
@@ -22,51 +22,47 @@
     </header>
     <main>
         <div class="projects-heading">
-            <img class="hard-hat" src="../assets/white-hard-hat.png" alt="">
-            <img class="rolled-paper" src="../assets/rollled-paper.webp" alt="">
-            <h1 class="ransom-title" aria-label="Projects">
-                <span><img src="../assets/projects-title/ransom-p.jpg" alt=""></span>
-                <span><img src="../assets/projects-title/ransom-r.jpg" alt=""></span>
-                <span><img src="../assets/projects-title/ransom-o.jpg" alt=""></span>
-                <span><img src="../assets/projects-title/ransom-j.jpg" alt=""></span>
-                <span><img src="../assets/projects-title/ransom-e.jpg" alt=""></span>
-                <span><img src="../assets/projects-title/ransom-c.jpg" alt=""></span>
-                <span><img src="../assets/projects-title/ransom-t.jpg" alt=""></span>
-                <span><img src="../assets/projects-title/ransom-s.jpg" alt=""></span>
-            </h1>
-            <img class="theodolite" src="../assets/theodolite.png" alt="">
+            <h1 class="projects-title">Projects</h1>
+            <p class="projects-heading-description">Hi! Welcome to my projects page. This is where I showcase each project, big or small, in as much detail as possible. Most projects include a Notion page showing my timeline and planning. To learn more, explore the projects below, or contact me <a href="../contact-me/">here</a> if there is something you would like to see that is not showcased.</p>
         </div>
         <section class="projects-content" data-project-archive data-projects-source="./projects.json">
             <noscript>
                 <p class="paper-panel projects-script-message">Enable JavaScript to load the project archive.</p>
             </noscript>
             <div class="projects-columns">
-                <section class="paper-panel recent-projects">
-                    <div class="updates-tab">Updates</div>
-                    <div class="updates-list" data-project-list="updates" aria-live="polite" aria-busy="true">
-                        <p class="projects-loading">Loading project updates…</p>
-                    </div>
-                    <div class="working-tab">Currently Working on Projects</div>
-                    <div class="posts-grid working-projects" data-project-list="working" aria-live="polite" aria-busy="true">
-                        <p class="projects-loading">Loading current projects…</p>
-                    </div>
-                    <h2>Recent Projects</h2>
-                    <div class="posts-grid" data-project-list="recent" aria-live="polite" aria-busy="true">
-                        <p class="projects-loading">Loading recent projects…</p>
-                    </div>
-                </section>
-                <aside class="paper-panel featured-projects">
-                    <h2>Featured Projects</h2>
-                    <div class="posts-grid" data-project-list="featured" aria-live="polite" aria-busy="true">
-                        <p class="projects-loading">Loading featured projects…</p>
-                    </div>
+                <div class="projects-left-column">
+                    <section class="paper-panel recent-projects">
+                        <div class="updates-tab">Updates</div>
+                        <div class="updates-list" data-project-list="updates" aria-live="polite" aria-busy="true">
+                            <p class="projects-loading">Loading project updates…</p>
+                        </div>
+                        <div class="working-tab">Currently Working on Projects</div>
+                        <div class="posts-grid working-projects" data-project-list="working" aria-live="polite" aria-busy="true">
+                            <p class="projects-loading">Loading current projects…</p>
+                        </div>
+                    </section>
+                    <section class="project-build-note" aria-labelledby="project-build-note-title">
+                        <h2 id="project-build-note-title">How was this website made?</h2>
+                        <p>I built this website directly with HTML, CSS and JavaScript rather than using a portfolio template. I planned each page, wrote the layouts and interactions, organised the project files, and used my own images and textures throughout. The main reason for making it this way was to develop practical coding skills by working through real design problems.</p>
+                        <p>Most of my research came from Google, YouTube and Reddit. I also used AI when I needed an explanation, help understanding an error or guidance on what to learn next, but it did not generate the finished website for me. I would use AI again as a support tool because it can save time, but I still want to understand the code and be able to build and change things myself.</p>
+                    </section>
+                </div>
+                <aside class="projects-sidebar">
+                    <section class="paper-panel featured-projects">
+                        <h2>Featured Projects</h2>
+                        <div class="posts-grid" data-project-list="featured" aria-live="polite" aria-busy="true">
+                            <p class="projects-loading">Loading featured projects…</p>
+                        </div>
+                    </section>
                 </aside>
             </div>
-            <section class="paper-panel all-posts">
-                <h2>All Posts</h2>
-                <a class="all-projects-page-link" href="./all-projects/">Browse and filter all projects &rarr;</a>
-                <div class="posts-grid" data-project-list="all" aria-live="polite" aria-busy="true">
-                    <p class="projects-loading">Loading all projects…</p>
+            <section class="paper-panel see-more-projects-panel recent-projects-feed" data-recent-feed>
+                <div class="see-more-heading">
+                    <h2>See More Projects</h2>
+                    <a class="all-projects-page-link" href="./all-projects/">Browse and filter all projects &rarr;</a>
+                </div>
+                <div class="posts-grid see-more-projects" data-project-list="recent" aria-live="polite" aria-busy="true">
+                    <p class="projects-loading">Loading more projects…</p>
                 </div>
             </section>
         </section>
