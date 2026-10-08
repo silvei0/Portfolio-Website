@@ -1,33 +1,33 @@
 {
   "siteName": "Fiza's Project Portfolio",
-  "title": "Window ledge overhang plant pot CAD design",
-  "subtitle": "Optional one-line project descriptor",
-  "description": "Explain what the project is, who it serves, and the value it creates in one clear sentence.",
-  "metaDescription": "A project case study by Fiza Mansoor.",
+  "title": "Designing a Hanging Plant Pot for my Window Ledge",
+  "subtitle": "X",
+  "description": "X",
+  "metaDescription": "X",
   "tags": [
-    "Tag one",
-    "Tag two"
+    "Structural Engineering",
+    "Fusion 360",
+    "CAD",
+    "Material Selection"
   ],
   "archive": {
-    "visibility": "public",
+    "visibility": "private",
     "featured": true,
     "currentlyWorking": true,
-    "date": "2026-01-01",
-    "cardDescription": "Optional shorter description used only on the projects archive.",
+    "date": "2026-10-11",
     "thumbnail": {
       "placeholder": "Project preview",
-      "alt": "Placeholder for the project thumbnail",
-      "decorative": true
+      "decorative": true,
+      "loading": "eager"
     }
   },
-  "discipline": "Your discipline",
+  "discipline": "Structural Engineering",
   "status": "In progress",
-  "timeline": "Month–Month 2026",
+  "timeline": "September–October 2026",
   "projectType": "Personal",
-  "role": "Your role",
   "tools": [
-    "Tool one",
-    "Tool two"
+    "Fusion 360",
+    "Procreate"
   ],
   "hero": {
     "placeholder": "Main project image",
@@ -41,43 +41,25 @@
       "type": "section",
       "id": "overview",
       "title": "Overview",
-      "intro": "Give the reader the essential context and explain why the project mattered.",
-      "blocks": [
-        {
-          "type": "two-column",
-          "columns": [
-            {
-              "blocks": [
-                {
-                  "type": "text",
-                  "title": "Goals",
-                  "listStyle": "ticks",
-                  "items": [
-                    "First project goal",
-                    "Second project goal",
-                    "Definition of success"
-                  ]
-                }
-              ]
-            },
-            {
-              "blocks": [
-                {
-                  "type": "text",
-                  "title": "My contribution",
-                  "content": "State what you owned, what you collaborated on, and the decisions you influenced."
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "intro": [
+        "One day, I was in one of the small spare rooms in my house when I noticed a golden pothos sitting on the windowsill. It had about five leaves and had been living in a small jar of water for what felt like forever. Every time I saw it, it looked exactly the same. I decided it deserved an upgrade.",
+        "I moved it into a proper pot with soil and, almost immediately, two of its leaves died. For a short while, I was convinced I was a terrible plant mother. Thankfully, the pothos had other plans. Since then, it has sprouted so many new leaves that it is starting to outgrow the windowsill entirely. That left me with a small problem. Where do I actually put it?",
+        "I considered putting it on a shelf in my room, but I wanted to give it more space to hang and grow. As a temporary solution, I thought about using the outside of my windowsill. I am aware that winter is approaching, so I am not planning on freezing my pothos to death. It would stay outside during suitable daytime conditions and come back inside at night.",
+        "I started looking for outdoor window planters, but most of what I found assumed you already had a flat, suitable windowsill or somewhere straightforward to attach a planter. Mine is neither. My windowsill is approximately X cm wide and slopes downwards at around 3°. Simply placing a planter on top would leave me relying on friction and good luck to stop my pothos from eventually falling off the side of the house.",
+        "I could not find an existing product that suited what I needed. So, why not design my own?",
+        "This gives me a small engineering problem with an actual purpose. I have a real site, a real object that needs supporting and a clear constraint: whatever I design needs to remain securely attached to an inclined external windowsill.",
+        "I will design the system in Fusion 360, using precise measurements of the window, sill and plant pot to develop the geometry. Some design decisions will come down to personal preference, particularly the appearance and arrangement of the planter. The main engineering focus will be the mounting and restraint system, making sure the planter cannot slide, tip or become unstable when installed.",
+        "I also want the final design to be easy for someone else to reproduce. Rather than showing the finished product and leaving someone to reverse-engineer it themselves, I plan to make the design open source. I want someone to be able to access the files, print the required components, order any standard parts and assemble their own version.",
+        "It is a small project, but that is part of why I like it. I noticed a problem in my own home, could not find a solution that suited it, and now I get to design and build one myself. And, hopefully, my pothos gets somewhere new to hang out."
+      ],
+      "blocks": [],
+      "hideFromContents": false
     },
     {
       "type": "section",
       "id": "process",
-      "title": "Process",
-      "intro": "Focus on evidence, decisions, testing, and refinement rather than listing every task.",
+      "title": "Research & Planning",
+      "intro": "Before every project I make sure I thoroughly research things that can help reduce time spent on the project. I make sure I don't reinvent the wheel, while it's great for understanding to remake something from the ground up I want to focus on the nitty gritty and things I know I would struggle with. Spending time constructing something I might not have to when a better alternative exists out there is my way of work.",
       "blocks": [
         {
           "type": "process-step",
@@ -89,8 +71,23 @@
             "alt": "Placeholder for research evidence",
             "caption": "Explain the evidence shown here."
           }
+        },
+        {
+          "type": "spacer",
+          "size": "medium",
+          "hideFromContents": false
+        },
+        {
+          "type": "text",
+          "content": [
+            "To begin with I like to find exisitng solutions to whatever problem or thing I want to design. I find it's a great way to get inspiration and broaden the ideas and ways I could approach said project. I found for this project this was an unintentional step as I've mentioned before, I was simply just browsing online for the product I made in this project.",
+            "I found that clamps were one way to hang pots. Typically the products I found were designed for think balcony railings. This wasn't suitable for the sloped thicker Uk typically window sill I needed the pot for."
+          ],
+          "hideFromContents": false,
+          "ordered": false
         }
-      ]
+      ],
+      "hideFromContents": false
     },
     {
       "type": "section",
@@ -133,5 +130,15 @@
   "contactUrl": "../../contact-me/",
   "contactLabel": "Have a project in mind?",
   "contactLinkText": "Get in touch →",
-  "backLinkText": "← Back to all projects"
+  "backLinkText": "← Back to all projects",
+  "externalLinks": [
+    {
+      "label": "Notion Project Timeline",
+      "hint": "View how I planned out this project with Notion.",
+      "url": "https://fiza-m.notion.site/Plant-Pots-3e369b26363f8040a88ce1e4704ee75d?source=copy_link",
+      "icon": "../../assets/logos/notion.svg",
+      "style": "primary",
+      "newTab": true
+    }
+  ]
 }

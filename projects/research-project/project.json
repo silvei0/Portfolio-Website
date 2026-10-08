@@ -9,7 +9,7 @@
     "Tag two"
   ],
   "archive": {
-    "visibility": "public",
+    "visibility": "private",
     "featured": false,
     "currentlyWorking": false,
     "date": "2026-01-01",
