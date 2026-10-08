@@ -4524,7 +4524,7 @@ body > header nav,
 }
 
 .about-centre-copy h1 span {
-    color: #d5a51f;
+    color: #865b3f;
 }
 
 .about-centre-copy > p:not(.about-small-intro) {
@@ -6308,5 +6308,663 @@ body > header nav,
 
     .projects-page:not(.all-projects-page):not(.project-post-page) .all-projects-page-link {
         margin-left: 0;
+    }
+}
+
+/* Responsive layout: content determines page height, with a bounded desktop canvas. */
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+body > header nav a { min-height: 44px; box-sizing: border-box; }
+.home-page, .about-page.about-home-style, .contact-page {
+    height: auto;
+    min-height: 100svh;
+    overflow-x: clip;
+    overflow-y: visible;
+}
+body footer {
+    position: relative;
+    bottom: auto;
+    padding: 24px 18px calc(24px + env(safe-area-inset-bottom));
+}
+.home-page main { min-height: 0; }
+.projects-heading, .projects-content {
+    box-sizing: border-box;
+    width: min(1440px, calc(100% - 48px));
+    margin-inline: auto;
+}
+.projects-page main { padding-bottom: 24px; }
+.projects-page:not(.all-projects-page):not(.project-post-page) .project-card {
+    min-height: 0;
+}
+.projects-page:not(.all-projects-page):not(.project-post-page) .working-projects {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+.about-home-style.about-reference-layout main.about-canvas {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr) minmax(0, 1fr);
+    grid-template-rows: repeat(3, auto);
+    align-items: center;
+    gap: 28px 40px;
+    box-sizing: border-box;
+    width: min(1540px, 100%);
+    height: auto;
+    min-height: calc(100svh - 24px);
+    margin: 0 auto;
+    padding: 120px 40px 48px;
+    overflow: visible;
+}
+.about-home-style.about-reference-layout .about-centre-copy {
+    position: static;
+    grid-column: 2;
+    grid-row: 1 / 4;
+    align-self: center;
+    width: 100%;
+    margin: 0;
+    transform: none;
+}
+.about-home-style.about-reference-layout .about-centre-copy h1 {
+    margin-top: 0;
+    font-size: clamp(40px, 3.8vw, 64px);
+    line-height: 1.1;
+}
+.about-home-style.about-reference-layout .about-centre-copy > p:not(.about-small-intro) {
+    position: static;
+    width: 100%;
+    font-size: clamp(16px, 1.1vw, 19px);
+    line-height: 1.6;
+    margin: 22px 0 0;
+}
+.about-home-style.about-reference-layout .about-links {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 28px;
+}
+.about-home-style.about-reference-layout .about-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 16px;
+}
+.about-home-style.about-reference-layout .about-post-it {
+    position: static;
+    inset: auto;
+    justify-self: center;
+    width: min(100%, 300px);
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    translate: none;
+    transform: rotate(-2deg);
+}
+.about-home-style.about-reference-layout .about-post-it img { height: auto; }
+.about-home-style.about-reference-layout .about-post-it--left { grid-column: 1; grid-row: 1; }
+.about-home-style.about-reference-layout .about-post-it--bottom { grid-column: 1; grid-row: 2; transform: rotate(2deg); }
+.about-home-style.about-reference-layout .about-post-it--middle-right { grid-column: 1; grid-row: 3; }
+.about-home-style.about-reference-layout .about-post-it--right { grid-column: 3; grid-row: 1; transform: rotate(2deg); }
+.about-home-style.about-reference-layout .about-post-it--lower-right { grid-column: 3; grid-row: 2; }
+.about-home-style.about-reference-layout .about-post-it--interests-extra { grid-column: 3; grid-row: 3; transform: rotate(2deg); }
+.contact-page main {
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 108px 24px 16px;
+}
+.contact-notion-embed {
+    height: max(560px, calc(100svh - 220px));
+    max-height: 1000px;
+    margin-inline: auto;
+}
+@media (min-width: 901px) {
+    .home-page { margin: 0; }
+    .home-page main {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        grid-template-areas: "title visual" "intro visual" "wave visual";
+        align-content: center;
+        gap: 24px 48px;
+        box-sizing: border-box;
+        width: min(1440px, 100%);
+        min-height: calc(100svh - 88px);
+        margin: 0 auto;
+        padding: 140px 48px 48px;
+    }
+    .home-page main h1 {
+        grid-area: title;
+        align-self: end;
+        margin: 0;
+        font-size: clamp(60px, 5vw, 86px);
+        line-height: 1.1;
+        transform: none;
+    }
+    .home-page main h2 {
+        grid-area: intro;
+        width: 100%;
+        max-width: 620px;
+        margin: 0;
+        font-size: clamp(17px, 1.25vw, 20px);
+        line-height: 1.6;
+        transform: none;
+    }
+    .home-page .home-visual {
+        position: relative;
+        inset: auto;
+        grid-area: visual;
+        align-self: center;
+        width: 100%;
+        max-width: 560px;
+        box-sizing: border-box;
+        padding-top: 220px;
+    }
+    .home-page .thought-bubble {
+        top: 0;
+        left: 50%;
+        width: min(100%, 500px);
+        transform: translateX(-50%);
+    }
+    .home-page .say-hi-wrap {
+        position: static;
+        grid-area: wave;
+        justify-self: start;
+        width: 180px;
+    }
+}
+@media (max-width: 1199px) {
+    .about-home-style.about-reference-layout main.about-canvas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
+        gap: 32px;
+        width: min(850px, 100%);
+    }
+    .about-home-style.about-reference-layout .about-centre-copy {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        max-width: 620px;
+        justify-self: center;
+    }
+    .about-home-style.about-reference-layout .about-post-it {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+@media (max-width: 900px) {
+    .home-page main { min-height: 0; }
+    .home-page main h1, .home-page main h2 { transform: none; }
+    .home-page .home-visual { max-width: 480px; }
+    .projects-heading, .projects-content { width: calc(100% - 36px); }
+}
+@media (max-width: 600px) {
+    .about-home-style.about-reference-layout main.about-canvas {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        padding: calc(96px + env(safe-area-inset-top)) 24px 40px;
+    }
+    .about-home-style.about-reference-layout .about-centre-copy h1 { font-size: clamp(36px, 10vw, 48px); }
+    .about-home-style.about-reference-layout .about-post-it { width: min(100%, 330px); }
+    .projects-page:not(.all-projects-page):not(.project-post-page) .paper-panel { padding: 20px; }
+    .projects-page:not(.all-projects-page):not(.project-post-page) .project-card-description { font-size: 15px; line-height: 1.5; }
+    .contact-page main { padding: calc(82px + env(safe-area-inset-top)) 12px 12px; }
+    .contact-notion-embed { height: max(540px, calc(100svh - 190px)); }
+    .home-page > header nav { flex-basis: 100%; }
+    .home-page main h1 { font-size: clamp(44px, 12vw, 62px); line-height: 1.1; }
+}
+
+/* Home is a single viewport; the illustration and wave scale as one scene. */
+html:has(> body.home-page) {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+body.home-page {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    margin: 0;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+.home-page > header {
+    position: relative;
+    inset: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: clamp(12px, 3vh, 36px) clamp(20px, 3vw, 60px) 8px;
+    background: none;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+.home-page > header nav {
+    position: static;
+    display: flex;
+    flex: 0 1 auto;
+    width: auto;
+    gap: 4px;
+    font-size: clamp(14px, 1.2vw, 22px);
+}
+.home-page > header nav a { display: inline-flex; align-items: center; padding: 6px; }
+.home-page .social-links { position: static; flex: 0 0 auto; gap: 16px; }
+.home-page main {
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-areas: none;
+    align-items: center;
+    align-content: stretch;
+    gap: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 2200px;
+    height: 100%;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 12px clamp(24px, 4.5vw, 100px) 0;
+}
+.home-page .home-copy { min-width: 0; }
+.home-page main h1 {
+    margin: 0 0 clamp(16px, 4vh, 42px);
+    font-size: clamp(38px, min(6vw, 12vh), 112px);
+    line-height: 1.08;
+    transform: none;
+}
+.home-page main h2 {
+    width: 100%;
+    max-width: 800px;
+    margin: 0;
+    font-size: clamp(14px, min(1.45vw, 2.8vh), 24px);
+    line-height: 1.55;
+    transform: none;
+}
+.home-page .home-scene {
+    container-type: size;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+}
+.home-page .home-visual {
+    position: relative;
+    inset: auto;
+    grid-area: auto;
+    align-self: center;
+    width: min(100cqw, 115cqh);
+    max-width: none;
+    height: auto;
+    aspect-ratio: 1.15;
+    margin: 0;
+    padding: 0;
+    container-type: inline-size;
+}
+.home-page .home-visual > a {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: block;
+    width: 78%;
+}
+.home-page .home-image { width: 100%; height: auto; }
+.home-page .thought-bubble {
+    position: absolute;
+    top: 0;
+    left: -3%;
+    width: 74%;
+    transform: none;
+}
+.home-page .thought-bubble-status {
+    top: 48%;
+    left: 51%;
+    font-size: clamp(10px, 2.6cqw, 24px);
+}
+.home-page .say-hi-wrap {
+    position: absolute;
+    inset: 46% 0 auto auto;
+    grid-area: auto;
+    width: 23%;
+    z-index: 3;
+}
+.home-page .say-hi-prompt { width: 100%; margin: 0 0 6px; font-size: clamp(10px, 2cqw, 18px); line-height: 1.25; }
+.home-page .say-hi { width: clamp(36px, 8cqw, 68px); min-width: 0; min-height: 44px; }
+.home-page .say-hi-status { margin-top: 4px; font-size: clamp(9px, 1.6cqw, 14px); }
+.home-page footer {
+    position: static;
+    width: 100%;
+    margin: 0;
+    padding: 8px 12px 12px;
+    font-size: clamp(9px, 0.8vw, 12px);
+    line-height: 1.25;
+}
+.home-page footer p { margin: 2px 0; }
+@media (max-width: 700px) and (orientation: portrait) {
+    .home-page main {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 8px;
+        padding: 12px 20px 0;
+    }
+    .home-page main h1 { margin-bottom: 12px; font-size: clamp(34px, min(11vw, 6.5dvh), 60px); }
+    .home-page main h2 { font-size: clamp(12px, min(3.65vw, 1.9dvh), 17px); line-height: 1.45; }
+    .home-page footer { padding: 4px 8px 6px; font-size: 9px; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+    .home-page > header { padding: 2px 18px; }
+    .home-page > header nav { font-size: 14px; gap: 2px; }
+    .home-page .social-links .coffee-button { height: 36px; padding: 4px 8px; font-size: 12px; }
+    .home-page main { padding: 4px 24px 0; gap: 12px; }
+    .home-page main h1 { margin-bottom: 10px; font-size: clamp(26px, 8dvh, 40px); }
+    .home-page main h2 { font-size: clamp(10px, 3.2dvh, 14px); line-height: 1.4; }
+    .home-page footer { padding: 2px 8px 4px; font-size: 8px; }
+}
+
+/* About: preserve the original collage proportions, then stack on narrow screens. */
+@media (min-width: 1200px) {
+    .about-home-style.about-reference-layout main.about-canvas {
+        display: block;
+        position: relative;
+        container-type: inline-size;
+        width: min(100%, 2200px);
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 1917 / 920;
+        margin: 0 auto;
+        padding: 0;
+        overflow: visible;
+    }
+    .about-home-style.about-reference-layout .about-centre-copy {
+        position: absolute;
+        top: 22%;
+        left: 50%;
+        width: 40%;
+        max-width: none;
+        margin: 0;
+        transform: translateX(-50%);
+    }
+    .about-home-style.about-reference-layout .about-centre-copy h1 {
+        margin: 0;
+        font-size: 4.4cqw;
+        line-height: 1.05;
+    }
+    .about-home-style.about-reference-layout .about-centre-copy > p:not(.about-small-intro) {
+        position: relative;
+        top: 1.2cqw;
+        width: 80%;
+        margin: 1.15cqw auto 0;
+        font-size: 1.1cqw;
+        line-height: 1.5;
+    }
+    .about-home-style.about-reference-layout .about-centre-copy > p + p:not(.about-small-intro) {
+        margin-top: 1.15cqw;
+    }
+    .about-home-style.about-reference-layout .about-links {
+        position: relative;
+        top: 1.56cqw;
+        gap: 1.36cqw;
+        margin-top: 1.67cqw;
+    }
+    .about-home-style.about-reference-layout .about-links a { box-sizing: border-box; min-height: 2.5cqw; font-size: .94cqw; }
+    .about-home-style.about-reference-layout .about-links a:first-child { padding: .63cqw .89cqw; }
+    .about-home-style.about-reference-layout .about-post-it {
+        position: absolute;
+        inset: auto;
+        height: auto;
+        margin: 0;
+        translate: none;
+    }
+    .about-home-style.about-reference-layout .about-post-it--left {
+        left: 2.5%; top: 16%; width: 18%; transform: rotate(-2.5deg);
+    }
+    .about-home-style.about-reference-layout .about-post-it--bottom {
+        left: 20%; top: 13%; width: 13%; transform: rotate(5.5deg); z-index: 3;
+    }
+    .about-home-style.about-reference-layout .about-post-it--lower-right {
+        left: 6.2%; top: 57%; width: 17%; transform: rotate(-10deg);
+    }
+    .about-home-style.about-reference-layout .about-post-it--middle-right {
+        right: 4.2%; top: 10%; width: 18.3%; transform: rotate(-3deg); z-index: 3;
+    }
+    .about-home-style.about-reference-layout .about-post-it--right {
+        left: 66%; top: 69%; width: 13%; transform: rotate(2deg); translate: 0 -0.78cqw; z-index: 4;
+    }
+    .about-home-style.about-reference-layout .about-post-it--interests-extra {
+        right: 2.1%; top: 52.5%; width: 18.3%; transform: rotate(5deg); z-index: 2;
+    }
+}
+@media (width < 1200px) {
+    .about-home-style.about-reference-layout main.about-canvas {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+        gap: 32px;
+        width: min(100%, 720px);
+        height: auto;
+        min-height: 0;
+        padding: calc(110px + env(safe-area-inset-top)) 24px 40px;
+    }
+    .about-home-style.about-reference-layout .about-centre-copy {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    .about-home-style.about-reference-layout .about-post-it {
+        grid-column: 1;
+        grid-row: auto;
+        width: min(100%, 380px);
+    }
+}
+
+/* Keep every home header link on one row, including narrow phones. */
+@media (max-width: 900px) {
+    .home-page > header {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: clamp(4px, 1.5vw, 12px);
+        padding: 8px clamp(8px, 2.5vw, 20px);
+    }
+    .home-page > header nav {
+        flex: 0 1 auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: clamp(1px, .5vw, 4px);
+        font-size: clamp(10px, 3.6vw, 20px);
+        white-space: nowrap;
+    }
+    .home-page > header nav a { padding: 0 1px; }
+    .home-page .social-links {
+        flex: 0 0 auto;
+        gap: clamp(5px, 1.5vw, 14px);
+    }
+    .home-page .social-links .coffee-button {
+        height: clamp(32px, 8vw, 44px);
+        gap: clamp(3px, .8vw, 6px);
+        padding: 4px clamp(5px, 1.5vw, 12px);
+        border-width: 2px;
+        font-size: clamp(8px, 2.8vw, 14px);
+        white-space: nowrap;
+        transform: none;
+    }
+    .home-page .social-links .coffee-button-icon {
+        width: clamp(12px, 3vw, 20px);
+        height: clamp(12px, 3vw, 20px);
+    }
+    .home-page .social-links a:not(.coffee-button) {
+        display: grid;
+        place-items: center;
+        width: clamp(22px, 5vw, 36px);
+        height: 44px;
+    }
+    .home-page .social-links a:not(.coffee-button) img {
+        width: clamp(20px, 4.8vw, 32px);
+        height: clamp(20px, 4.8vw, 32px);
+    }
+}
+
+/* Shared desktop navigation geometry prevents jumps between pages. */
+@media (width > 900px) {
+    :is(.home-page, .about-page, .projects-page, .contact-page) > header nav {
+        position: fixed;
+        top: calc(30px + env(safe-area-inset-top));
+        right: auto;
+        left: calc(40px + env(safe-area-inset-left));
+        display: grid;
+        grid-template-columns: 3.6em 3.7em 4.7em 4.8em;
+        align-items: center;
+        justify-content: start;
+        gap: 4px;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        font-size: 18px;
+        line-height: 22px;
+        white-space: nowrap;
+    }
+    :is(.home-page, .about-page, .projects-page, .contact-page) > header nav a {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        min-width: 0;
+        height: 44px;
+        min-height: 44px;
+        padding: 8px;
+    }
+    .home-page > header {
+        box-sizing: border-box;
+        min-height: 92px;
+        padding: 30px 50px 18px 40px;
+    }
+    .home-page .social-links { margin-left: auto; }
+}
+
+/* Match the shared narrow-screen navigation; give social buttons their own row. */
+@media (max-width: 700px) {
+    .home-page > header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 4px;
+        padding: 10px 10px 4px;
+    }
+    .home-page > header nav {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        min-width: 0;
+        width: 100%;
+        font-size: clamp(13px, 4vw, 16px);
+        line-height: 1.1;
+    }
+    .home-page > header nav a {
+        display: grid;
+        min-width: 0;
+        min-height: 44px;
+        padding: 7px 2px;
+        text-align: center;
+        place-items: center;
+    }
+    .home-page .social-links {
+        justify-self: end;
+        gap: 12px;
+        margin-right: 10px;
+    }
+    .home-page .social-links .coffee-button {
+        height: 36px;
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+    .home-page .social-links .coffee-button-icon { width: 16px; height: 16px; }
+    .home-page .social-links a:not(.coffee-button) { width: 30px; height: 36px; }
+    .home-page .social-links a:not(.coffee-button) img { width: 24px; height: 24px; }
+}
+/* Reverse the final two notes only in the stacked About layout. */
+@media (width < 1200px) {
+    .about-home-style.about-reference-layout .about-post-it--interests-extra { grid-row: 6; }
+    .about-home-style.about-reference-layout .about-post-it--lower-right { grid-row: 7; }
+}
+
+/* Wide Home composition follows the supplied reference; phones retain the stacked layout. */
+@media (min-width: 901px) and (min-aspect-ratio: 4/3) {
+    .home-page main {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: min(100%, 212.5dvh);
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        container-type: inline-size;
+        max-width: none;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .home-page .home-copy {
+        position: absolute;
+        top: 35.9%;
+        left: 4.6%;
+        width: 40%;
+        z-index: 2;
+    }
+    .home-page main h1 {
+        margin: 0 0 1.2cqw;
+        font-size: 5.85cqw;
+        line-height: 1.08;
+        white-space: nowrap;
+    }
+    .home-page main h2 {
+        width: 100%;
+        max-width: none;
+        font-size: 1.30625cqw;
+        line-height: 1.55;
+    }
+    .home-page .home-scene,
+    .home-page .home-visual {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        aspect-ratio: auto;
+        margin: 0;
+        padding: 0;
+    }
+    .home-page .home-visual > a {
+        right: 2.5%;
+        bottom: 4.8%;
+        width: 36.5%;
+    }
+    .home-page .thought-bubble {
+        top: 6.9%;
+        left: 44.5%;
+        width: 33%;
+    }
+    .home-page .thought-bubble-status { font-size: 1.45cqw; }
+    .home-page .say-hi-wrap {
+        top: 50%;
+        right: 4%;
+        bottom: auto;
+        width: 8.5%;
+    }
+    .home-page .say-hi-prompt { font-size: 1cqw; }
+    .home-page .say-hi { width: 3.65cqw; }
+    .home-page .say-hi-status { font-size: .8cqw; }
+    .home-page footer {
+        position: absolute;
+        bottom: 2.4%;
+        padding: 0 12px;
+        font-size: min(.74vw, 1.57dvh);
     }
 }
