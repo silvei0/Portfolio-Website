@@ -3759,6 +3759,16 @@ body > header nav,
     }
 }
 
+/* Keep inserted project text consistent with each section's opening copy. */
+.project-post-page :is(.project-text-block, .project-text-block p,
+    .project-text-block li, .project-column, .project-column p,
+    .project-column li, .project-image-text-copy, .project-image-text-copy p,
+    .project-image-text-copy li, .project-custom-html, .project-custom-html p,
+    .project-custom-html li) {
+    color: #3f4d49;
+    font-size: 19px;
+}
+
 @media (max-width: 700px) {
     body > header nav {
         top: max(10px, env(safe-area-inset-top));
@@ -6967,4 +6977,8 @@ body.home-page {
         padding: 0 12px;
         font-size: min(.74vw, 1.57dvh);
     }
+}
+
+.home-page .social-links {
+    gap: 25px;
 }

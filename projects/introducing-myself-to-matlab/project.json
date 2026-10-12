@@ -135,11 +135,9 @@
   "backLinkText": "← Back to all projects",
   "externalLinks": [
     {
-      "label": "MATLAB Essentials Course",
-      "hint": "The course I used to guide this project.",
-      "url": "https://www.edx.org/learn/matlab/mathworks-matlab-essentials?index=rv_product_summary&queryId=5a8a47dbd8caead994bd4331e34d0bab&position=6",
-      "icon": "../../assets/logos/edx.svg",
-      "style": "primary",
+      "label": "Project Summary PDF",
+      "hint": "Want a quick look at the whole project? Click here.",
+      "url": "fiza.engineering",
       "newTab": true
     },
     {
@@ -147,6 +145,14 @@
       "hint": "View how I planned out this project with Notion.",
       "url": "https://fiza-mansoor.notion.site/MATLAB-Essentials-Course-3b759cd13a078058bfa9fc813a1fe141?source=copy_link",
       "icon": "../../assets/logos/notion.svg",
+      "style": "primary",
+      "newTab": true
+    },
+    {
+      "label": "MATLAB Essentials Course",
+      "hint": "The course I used to guide this project.",
+      "url": "https://www.edx.org/learn/matlab/mathworks-matlab-essentials?index=rv_product_summary&queryId=5a8a47dbd8caead994bd4331e34d0bab&position=6",
+      "icon": "../../assets/logos/edx.svg",
       "style": "primary",
       "newTab": true
     }
